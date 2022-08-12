@@ -1008,6 +1008,7 @@ libxerces_c_deps = []
 libxerces_c_sources = []
 libxerces_c_headers = []
 
+# NetAccessors, conditionally built based on selection
 if libsocket.found()
     libxerces_c_deps += libsocket
 endif
@@ -1036,4 +1037,32 @@ endif
 if config_data.get('XERCES_USE_NETACCESSOR_WINSOCK') == 1
     libxerces_c_sources += winsock_sources
     libxerces_c_headers += winsock_headers
+endif
+
+# Transcoders, conditionally built based on selection
+if config_data.get('XERCES_USE_TRANSCODER_ICU') == 1
+    libxerces_c_sources += icu_sources
+    libxerces_c_headers += icu_headers
+    libxerces_c_deps += 'ICU::uc ICU::data'
+endif
+
+if config_data.get('XERCES_USE_TRANSCODER_GNUICONV') == 1
+    libxerces_c_sources += gnuiconv_sources
+    libxerces_c_headers += gnuiconv_headers
+endif
+
+if config_data.get('XERCES_USE_TRANSCODER_ICONV') == 1
+    libxerces_c_sources += iconv_sources
+    libxerces_c_headers += iconv_headers
+endif
+
+if config_data.get('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER') == 1
+    libxerces_c_sources += macosunicodeconverter_sources
+    libxerces_c_headers += macosunicodeconverter_headers
+    libxerces_c_deps += core_services_library
+endif
+
+if config_data.get('XERCES_USE_TRANSCODER_WINDOWS') == 1
+    libxerces_c_sources += wintrans_sources
+    libxerces_c_headers += wintrans_headers
 endif
