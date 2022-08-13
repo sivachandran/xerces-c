@@ -4,6 +4,7 @@ project('xerces-c', 'cpp',
         default_options: 'default_library=static')
 
 source_root = meson.current_source_dir()
+build_root = meson.current_build_dir()
 host_system = host_machine.system()
 
 cxx = meson.get_compiler('cpp')
@@ -227,6 +228,55 @@ else
 endif
 ### End Transcoder Selection ###
 
+### Begin MsgLoaders ###
+msgloaders = []
+
+icu = cxx.find_library('icu', required: false)
+if icu.found()
+    msgloaders += 'icu'
+endif
+
+if cxx.has_header('nl_types.h')
+    config_data.set('HAVE_NLTYPES_H', 1)
+endif
+
+if cxx.has_function('catopen')
+    config_data.set('HAVE_CATOPEN', 1)
+endif
+
+if cxx.has_function('catclose')
+    config_data.set('HAVE_CATCLOSE', 1)
+endif
+
+if cxx.has_function('catgets')
+    config_data.set('HAVE_CATGETS', 1)
+endif
+
+if config_data.get('HAVE_NLTYPES_H') == 1 and \
+    config_data.get('HAVE_CATOPEN') == 1 and \
+    config_data.get('HAVE_CATCLOSE') == 1 and \
+    config_data.get('HAVE_CATGETS') == 1
+    msgloaders += 'iconv'
+endif
+
+if msgloaders.length() == 0
+    error('no msgloaders found')
+endif
+
+config_data.set('XERCES_USE_MSGLOADER_ICU', 0)
+config_data.set('XERCES_USE_MSGLOADER_ICONV', 0)
+config_data.set('XERCES_USE_MSGLOADER_INMEMORY', 0)
+
+if msgloaders[0] == 'icu'
+    config_data.set('XERCES_USE_MSGLOADER_ICU', 1)
+elif msgloaders[0] == 'iconv'
+    config_data.set('XERCES_USE_MSGLOADER_ICONV', 1)
+elif msgloaders[0] == 'inmemory'
+    config_data.set('XERCES_USE_MSGLOADER_INMEMORY', 1)
+else
+    error('invalid msgloader ' + msgloaders[0])
+endif
+### End MsgLoaders ###
 
 configure_file(
     format: 'cmake@',

@@ -1043,7 +1043,7 @@ endif
 if config_data.get('XERCES_USE_TRANSCODER_ICU') == 1
     libxerces_c_sources += icu_sources
     libxerces_c_headers += icu_headers
-    libxerces_c_deps += 'ICU::uc ICU::data'
+    libxerces_c_deps += ['ICU::uc', 'ICU::data']
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_GNUICONV') == 1
@@ -1065,4 +1065,60 @@ endif
 if config_data.get('XERCES_USE_TRANSCODER_WINDOWS') == 1
     libxerces_c_sources += wintrans_sources
     libxerces_c_headers += wintrans_headers
+endif
+
+# MsgLoaders, conditionally built based on selection
+if config_data.get('XERCES_USE_MSGLOADER_INMEMORY') == 1
+    libxerces_c_sources += msginmemory_sources
+    libxerces_c_headers += msginmemory_headers
+endif
+
+if config_data.get('XERCES_USE_MSGLOADER_ICU') == 1
+    libxerces_c_sources += msgicu_sources
+    libxerces_c_sources += msgicu_nodist_sources
+    libxerces_c_headers += msgicu_headers
+    libxerces_c_deps += ['ICU::uc', 'ICU::data']
+
+    pkgname = 'xercesc_messages_' + config_data.get('INTERFACE_VERSION_U')
+
+    custom_target(
+        'xercesc_messages.c',
+        output: ['xercesc_messages.c'],
+        input: [source_root + 'xercesc/util/MsgLoaders/ICU/resources/res-file-list.txt'],
+        command: [find_program('gencmn'), '--name', pkgname, '-S', '@OUTPUT@', '-d', '.', '@INPUT@']
+    )
+
+    custom_target(
+        'root.res',
+        output: ['root.res'],
+        input: [source_root + 'xercesc/util/MsgLoaders/ICU/resources/root.txt'],
+        command: [find_program('genrb'), '-d', '.', '@INPUT']
+    )
+
+    custom_target(
+        'root_res.c',
+        output: ['root_res.c'],
+        input: ['root.res'],
+        command: [find_program('gencode'), '--name', pkgname, '-d', '.', '@INPUT@']
+    )
+endif
+
+if config_data.get('XERCES_USE_MSGLOADER_ICONV') == 1
+    libxerces_c_sources += msgiconv_sources
+    libxerces_c_headers += msgiconv_headers
+
+    pkgname = 'XercesMessages'
+
+    res_target = pkgname + '_en_US.cat'
+    res_file = source_root + '/xercesc/util/MsgLoaders/MsgCatalog/XercesMessages_en_US.Msg'
+
+    custom_target(
+        res_target,
+        output: [res_target],
+        input: [res_file],
+        command: [find_program('gencat'), res_target, res_file]
+    )
+
+    # TODO: find out why gencat ALL is required
+    # TODO: install res_target
 endif
