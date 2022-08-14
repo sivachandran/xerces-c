@@ -1,7 +1,9 @@
 project('xerces-c', 'cpp',
         version: '3.2.3',
         license: 'Apache v2.0',
-        default_options: 'default_library=static')
+        default_options: [
+            'default_library=static',
+        ])
 
 source_root = meson.current_source_dir()
 build_root = meson.current_build_dir()
@@ -277,6 +279,84 @@ else
     error('invalid msgloader ' + msgloaders[0])
 endif
 ### End MsgLoaders ###
+
+### Begin MutexMgr Selection ###
+mutexmgrs = []
+
+threads = true
+if not get_option('threads')
+    threads = false
+endif
+
+if threads
+    threads_prefer_pthread = true
+    add_global_arguments('-D_THREAD_SAFE=1', language: 'cpp')
+
+    code = '''
+#include <thread>
+#include <mutex>
+#include <iostream>
+
+namespace
+{
+
+  std::mutex m1;
+  std::recursive_mutex m2;
+
+  void
+  threadmain()
+  {
+    std::lock_guard<std::mutex> lock1(m1);
+    std::lock_guard<std::recursive_mutex> lock2(m2);
+    std::cout << \"In thread\" << std::endl;
+  }
+
+}
+
+int main() {
+  std::thread foo(threadmain);
+  foo.join();
+
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'std::thread check')
+        mutexmgrs += 'standard'
+    endif
+
+    threads_dep = dependency('threads')
+    if threads_dep.found()
+        if host_system == 'windows'
+            mutexmgrs += 'windows'
+        else
+            mutexmgrs += 'posix'
+            config_data.set('HAVE_PTHREAD', 1)
+        endif
+    endif
+endif
+
+mutexmgrs += 'nothreads'
+
+if mutexmgrs.length() == 0
+    error('no mutexmgr found')
+endif
+
+config_data.set('XERCES_USE_MUTEXMGR_STD', 0)
+config_data.set('XERCES_USE_MUTEXMGR_POSIX', 0)
+config_data.set('XERCES_USE_MUTEXMGR_WINDOWS', 0)
+config_data.set('XERCES_USE_MUTEXMGR_NOTHREAD', 0)
+if mutexmgrs[0] == 'standard'
+    config_data.set('XERCES_USE_MUTEXMGR_STD', 1)
+elif mutexmgrs[0] == 'posix'
+    config_data.set('XERCES_USE_MUTEXMGR_POSIX', 1)
+elif mutexmgrs[0] == 'windows'
+    config_data.set('XERCES_USE_MUTEXMGR_WINDOWS', 1)
+elif mutexmgrs[0] == 'nothreads'
+    config_data.set('XERCES_USE_MUTEXMGR_NOTHREAD', 1)
+else
+    error('invalid mutexmgr ' + mutexmgrs[0])
+endif
+### End MutexMgr Selection ###
 
 configure_file(
     format: 'cmake@',

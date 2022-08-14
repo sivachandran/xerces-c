@@ -1122,3 +1122,28 @@ if config_data.get('XERCES_USE_MSGLOADER_ICONV') == 1
     # TODO: find out why gencat ALL is required
     # TODO: install res_target
 endif
+
+# Mutex Managers, conditionally built based on selection
+if config_data.get('XERCES_USE_MUTEXMGR_NOTHREAD') == 1
+    libxerces_c_sources += nothreadmmgr_sources
+    libxerces_c_headers += nothreadmmgr_headers
+endif
+
+if config_data.get('XERCES_USE_MUTEXMGR_STD') == 1
+    libxerces_c_sources += stdmmgr_sources
+    libxerces_c_headers += stdmmgr_sources
+    libxerces_c_deps += threads_dep
+endif
+
+if config_data.get('XERCES_USE_MUTEXMGR_POSIX') == 1
+    libxerces_c_sources += posixfmgr_sources
+    libxerces_c_headers += posixfmgr_headers
+    libxerces_c_deps += threads_dep
+endif
+
+if config_data.get('XERCES_USE_MUTEXMGR_WINDOWS') == 1
+    libxerces_c_sources += winmmgr_sources
+    libxerces_c_headers += winmmgr_headers
+endif
+
+
