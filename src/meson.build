@@ -1146,4 +1146,13 @@ if config_data.get('XERCES_USE_MUTEXMGR_WINDOWS') == 1
     libxerces_c_headers += winmmgr_headers
 endif
 
+# File Managers, conditionally built based on selection
+if config_data.get('XERCES_USE_FILEMGR_POSIX') == 1
+    libxerces_c_sources += posixfmgr_sources
+    libxerces_c_headers += posixfmgr_headers
+endif
 
+if config_data.get('XERCES_USE_FILEMGR_WINDOWS') == 1
+    libxerces_c_sources += winfmgr_sources
+    libxerces_c_headers += winfmgr_headers
+endif

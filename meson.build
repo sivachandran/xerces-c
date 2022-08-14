@@ -276,7 +276,7 @@ elif msgloaders[0] == 'iconv'
 elif msgloaders[0] == 'inmemory'
     config_data.set('XERCES_USE_MSGLOADER_INMEMORY', 1)
 else
-    error('invalid msgloader ' + msgloaders[0])
+    error('invalid message loader ' + msgloaders[0])
 endif
 ### End MsgLoaders ###
 
@@ -354,9 +354,24 @@ elif mutexmgrs[0] == 'windows'
 elif mutexmgrs[0] == 'nothreads'
     config_data.set('XERCES_USE_MUTEXMGR_NOTHREAD', 1)
 else
-    error('invalid mutexmgr ' + mutexmgrs[0])
+    error('invalid mutex manager ' + mutexmgrs[0])
 endif
 ### End MutexMgr Selection ###
+
+### Begin FileMgr Selection ###
+
+config_data.set('XERCES_USE_FILEMGR_POSIX', 0)
+config_data.set('XERCES_USE_FILEMGR_WINDOWS', 0)
+
+if host_system == 'windows'
+    config_data.set('XERCES_USE_FILEMGR_WINDOWS', 1)
+elif host_system == 'linux'
+    config_data.set('XERCES_USE_FILEMGR_POSIX', 1)
+else
+    error('invalid file manager ' + host_system)
+endif
+
+### End FileMgr Selection ###
 
 configure_file(
     format: 'cmake@',
