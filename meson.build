@@ -5,6 +5,7 @@ project('xerces-c', ['c','cpp'],
             'default_library=static',
         ])
 
+project_name = meson.project_name()
 source_root = meson.current_source_dir()
 build_root = meson.current_build_dir()
 host_system = host_machine.system()
@@ -35,6 +36,14 @@ config_data.set('INTERFACE_VERSION_MINOR', interface_version_minor)
 config_data.set('INTERFACE_VERSION_D', '@0@.@1@'.format(interface_version_major, interface_version_minor))
 config_data.set('INTERFACE_VERSION_U', '@0@_@1@'.format(interface_version_major, interface_version_minor))
 config_data.set('XERCES_GRAMMAR_SERIALIZATION_LEVEL', grammar_serialization_level)
+
+config_data.set('PACKAGE', project_name)
+config_data.set('PACKAGE_NAME', project_name)
+config_data.set('PACKAGE_TARNAME', project_name)
+config_data.set('PACKAGE_VERSION', xercesc_version)
+config_data.set('PACKAGE_STRING', project_name + ' ' + xercesc_version)
+config_data.set('PACKAGE_BUGREPORT', 'c-dev@xerces.apache.org')
+config_data.set('PACKAGE_URL', '"https://xerces.apache.org/xerces-c/"')
 
 ### Begin Xerces Warnings ###
 compiler_args = []
