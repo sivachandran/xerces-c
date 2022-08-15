@@ -426,6 +426,174 @@ else
 endif
 ### End Xerces DLL ###
 
+### Begin Xerces Int Types ###
+# Integer type checks.
+config_data.set('HAVE_CSTDINT', 0)
+if cxx.has_header('cstdint')
+    config_data.set('HAVE_CSTDINT', 1)
+endif
+
+config_data.set('CSTDINT_FUNCTIONAL', 0)
+code = '''
+include <cstdint>
+
+int main() {
+  uint32_t v1 = 342;
+  int64_t v2 = -23;
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'cstdint check')
+    config_data.set('CSTDINT_FUNCTIONAL', 1)
+endif
+
+config_data.set('HAVE_STDINT_H', 0)
+if cxx.has_header('stdint.h')
+    config_data.set('HAVE_STDINT_H', 1)
+endif
+
+config_data.set('HAVE_INTTYPES_H', 0)
+if cxx.has_header('inttypes.h')
+    config_data.set('HAVE_INTTYPES_H', 1)
+endif
+
+config_data.set('XERCES_HAVE_CSTDINT', 0)
+if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('CSTDINT_FUNCTIONAL') == 1
+    config_data.set('XERCES_HAVE_CSTDINT', 1)
+endif
+config_data.set('XERCES_HAVE_STDINT_H', config_data.get('HAVE_CSTDINT'))
+config_data.set('XERCES_HAVE_INTTYPES_H', config_data.get('HAVE_INTTYPES_H'))
+
+# Standard typedefs
+config_data.set('SIZEOF_OFF_T' ,  cxx.sizeof('off_t',   prefix: '#include <stddef.h>'))
+config_data.set('SIZEOF_SIZE_T',  cxx.sizeof('size_t',  prefix: '#include <stddef.h>'))
+config_data.set('SIZEOF_SSIZE_T', cxx.sizeof('ssize_t', prefix: '#include <stddef.h>'))
+config_data.set('SIZEOF_WCHAR_T', cxx.sizeof('wchar_t', prefix: '#include <stddef.h>'))
+
+config_data.set('HAVE_OFF_T', 0)
+if config_data.get('SIZEOF_OFF_T') != -1
+    config_data.set('HAVE_OFF_T', 1)
+endif
+
+config_data.set('HAVE_SIZE_T', 0)
+if config_data.get('SIZEOF_SIZE_T') != -1
+    config_data.set('HAVE_SIZE_T', 1)
+endif
+
+config_data.set('HAVE_SSIZE_T', 0)
+if config_data.get('SIZEOF_SSIZE_T') != -1
+    config_data.set('HAVE_SSIZE_T', 1)
+endif
+
+config_data.set('HAVE_WCHAR_T', 0)
+if config_data.get('SIZEOF_WCHAR_T') != -1
+    config_data.set('HAVE_WCHAR_T', 1)
+endif
+
+if config_data.get('HAVE_SIZE_T') == 1
+    config_data.set('XERCES_SIZE_T', 'size_t')
+    config_data.set('XERCES_SIZE_MAX', 'SIZE_MAX')
+else
+    config_data.set('XERCES_SIZE_T', 'unsigned long')
+    config_data.set('XERCES_SIZE_MAX', 'ULONG_MAX')
+endif
+
+if config_data.get('HAVE_SSIZE_T') == 1
+    config_data.set('XERCES_SSIZE_T', 'ssize_t')
+    config_data.set('XERCES_SSIZE_MAX', 'SSIZE_MAX')
+else
+    config_data.set('XERCES_SSIZE_T', 'long')
+    config_data.set('XERCES_SSIZE_MAX', 'SSIZE_MAX')
+endif
+
+# Check type sizes
+config_data.set('SIZEOF_SHORT',              cxx.sizeof('signed short'))
+config_data.set('SIZEOF_UNSIGNED_SHORT',     cxx.sizeof('unsigned short'))
+config_data.set('SIZEOF_INT',                cxx.sizeof('signed int'))
+config_data.set('SIZEOF_UNSIGNED_INT',       cxx.sizeof('unsigned int'))
+config_data.set('SIZEOF_LONG',               cxx.sizeof('signed long'))
+config_data.set('SIZEOF_UNSIGNED_LONG',      cxx.sizeof('unsigned long'))
+config_data.set('SIZEOF_LONG_LONG',          cxx.sizeof('signed long long'))
+config_data.set('SIZEOF_UNSIGNED_LONG_LONG', cxx.sizeof('unsigned long long'))
+config_data.set('SIZEOF___INT64',            cxx.sizeof('__int64'))
+config_data.set('SIZEOF_UNSIGNED__INT64',    cxx.sizeof('unsigned __int64'))
+config_data.set('SIZEOF_UNSIGNED_CHAR_P',    cxx.sizeof('unsigned char *'))
+
+# If this failed, set size to zero to match autoconf
+if config_data.get('SIZEOF___INT64') == -1
+    config_data.set('SIZEOF___INT64', 0)
+endif
+
+if config_data.get('SIZEOF_UNSIGNED__INT64') == -1
+    config_data.set('SIZEOF_UNSIGNED__INT64', 0)
+endif
+
+if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('HAVE_STDINT_H') == 1 and config_data.get('HAVE_INTTYPES_H') == 1
+    config_data.set('XERCES_S16BIT_INT', 'int16_t')
+    config_data.set('XERCES_U16BIT_INT', 'uint16_t')
+    config_data.set('XERCES_S32BIT_INT', 'int32_t')
+    config_data.set('XERCES_U32BIT_INT', 'uint32_t')
+    config_data.set('XERCES_S64BIT_INT', 'int64_t')
+    config_data.set('XERCES_U64BIT_INT', 'uint64_t')
+else
+    if config_data.get('SIZEOF_SHORT') == 2
+        config_data.set('XERCES_S16BIT_INT', 'signed short')
+    elif config_data.get('SIZEOF_INT') == 2
+        config_data.set('XERCES_S16BIT_INT', 'int')
+    else
+        error('couldn\'t find a signed 16-bit type')
+    endif
+
+    if config_data.get('SIZEOF_UNSIGNED_SHORT') == 2
+        config_data.set('XERCES_U16BIT_INT', 'signed short')
+    elif config_data.get('SIZEOF_UNSIGNED_INT') == 2
+        config_data.set('XERCES_U16BIT_INT', 'int')
+    else
+        error('couldn\'t find an unsigned 16-bit type')
+    endif
+
+    if config_data.get('SIZEOF_INT') == 4
+        config_data.set('XERCES_S32BIT_INT', 'signed int')
+    elif config_data.get('SIZEOF_LONG') == 4
+        config_data.set('XERCES_S32BIT_INT', 'signed long')
+    else
+        error('couldn\'t find an signed 32-bit type')
+    endif
+
+    if config_data.get('SIZEOF_UNSIGNED_INT') == 4
+        config_data.set('XERCES_U32BIT_INT', 'unsigned short')
+    elif config_data.get('SIZEOF_UNSIGNED_LONG') == 4
+        config_data.set('XERCES_U32BIT_INT', 'unsigned long')
+    else
+        error('couldn\'t find an unsigned 32-bit type')
+    endif
+
+    if config_data.get('SIZEOF_INT') == 8
+        config_data.set('XERCES_S64BIT_INT', 'signed int')
+    elif config_data.get('SIZEOF_LONG') == 8
+        config_data.set('XERCES_S64BIT_INT', 'signed long')
+    elif config_data.get('SIZEOF_LONG_LONG') == 8
+        config_data.set('XERCES_S64BIT_INT', 'signed long long')
+    elif config_data.get('SIZEOF___INT64') == 8
+        config_data.set('XERCES_S64BIT_INT', '__int64')
+    else
+        error('couldn\'t find a signed 64-bit type')
+    endif
+
+    if config_data.get('SIZEOF_UNSIGNED_INT') == 8
+        config_data.set('XERCES_U64BIT_INT', 'unsigned int')
+    elif config_data.get('SIZEOF_UNSIGNED_LONG') == 8
+        config_data.set('XERCES_U64BIT_INT', 'unsigned long')
+    elif config_data.get('SIZEOF_UNSIGNED_LONG_LONG') == 8
+        config_data.set('XERCES_U64BIT_INT', 'unsigned long')
+    elif config_data.get('SIZEOF_UNSIGNED__INT64') == 8
+        config_data.set('XERCES_U64BIT_INT', 'unsigned __int64')
+    else
+        error('couldn\'t find an unsigned 64-bit type')
+    endif
+endif
+### End Xerces Types ###
+
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
 libnsl = cxx.find_library('nsl', required: false)
