@@ -999,6 +999,46 @@ elif xmlch_types[0] == 'wchar_t'
 endif
 ### End Xerces XML Ch ###
 
+### Begin Operator Delete ###
+code = '''
+#include <stdlib.h>
+
+class XMemory {
+public:
+  void* operator new(size_t s) { return 0; }
+  void* operator new(size_t s, void* ptr) { return 0; }
+  void operator delete(void* p) {}
+  void operator delete(void* p, void* ptr) {}
+};
+
+int main() {
+  return 0;
+}
+'''
+config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 0)
+if cxx.compiles(code, name: 'delete operator check')
+    config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 1)
+endif
+### End Operator Delete
+
+### Begin Bool ###
+code = '''
+int f(int  x){return 1;}
+int f(char x){return 1;}
+int f(bool x){return 1;}
+
+int main() {
+  bool b = true;
+  return f(b);
+}
+'''
+config_data.set('XERCES_NO_NATIVE_BOOL', 0)
+if cxx.compiles(code, name: 'bool check')
+    config_data.set('XERCES_NO_NATIVE_BOOL', 1)
+endif
+
+### End Bool
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
