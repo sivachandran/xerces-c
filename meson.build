@@ -1036,7 +1036,19 @@ config_data.set('XERCES_NO_NATIVE_BOOL', 0)
 if cxx.compiles(code, name: 'bool check')
     config_data.set('XERCES_NO_NATIVE_BOOL', 1)
 endif
+### End Bool
 
+### Begin Const ###
+code = '''
+int main() {
+  const char *s = \"Test\";
+  return 0;
+}
+'''
+config_data.set('HAVE_CONST', 0)
+if cxx.compiles(code, name: 'const check')
+    config_data.set('HAVE_CONST', 1)
+endif
 ### End Bool
 
 configure_file(
