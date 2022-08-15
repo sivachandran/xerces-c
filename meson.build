@@ -1102,6 +1102,14 @@ if cxx.compiles(code, name: 'LString check')
 endif
 ### End LString ###
 
+### Begin MFC ###
+config_data.set('XERCES_MFC_SUPPORT', 0)
+if get_option('mfc-debug') or \
+    (cxx.get_id() == 'msvc' and get_options('mfc-debug').auto())
+    config_data.set('XERCES_MFC_SUPPORT', 1)
+endif
+### End MFC
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',

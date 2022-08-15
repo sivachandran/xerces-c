@@ -4,3 +4,5 @@ option('extra-warnings', type: 'boolean', value: false, description: 'Enable ext
 option('fatal-warnings', type: 'boolean', value: false, description: 'Compiler warnings are errors')
 
 option('path-delimiter-backslash', type: 'boolean', value: false, description: 'Accept backslash as a path delimiter')
+
+option('mfc-debug', type: 'boolean', value: false, description: 'MFC debug support')
