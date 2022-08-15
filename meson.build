@@ -1077,26 +1077,26 @@ endforeach
 ### End Inline ###
 
 ### Begin Volatile ###
+config_data.set('HAVE_VOLATILE', 0)
 code = '''
 int main() {
   volatile int i = 1;
   return 0;
 }
 '''
-config_data.set('HAVE_VOLATILE', 0)
 if cxx.compiles(code, name: 'volatile check')
     config_data.set('HAVE_VOLATILE', 1)
 endif
 ### End Volatile ###
 
 ### Begin LString ###
+config_data.set('HAVE_LSTRING', 0)
 code = '''
 int main() {
   const wchar_t* s=L\"wide string\";
   return 0;
 }
 '''
-config_data.set('HAVE_LSTRING', 0)
 if cxx.compiles(code, name: 'LString check')
     config_data.set('HAVE_LSTRING', 1)
 endif
@@ -1109,6 +1109,27 @@ if get_option('mfc-debug') or \
     config_data.set('XERCES_MFC_SUPPORT', 1)
 endif
 ### End MFC
+
+### Begin Namespaces ###
+config_data.set('HAVE_NAMESPACES', 0)
+config_data.set('XERCES_HAS_CPP_NAMESPACE', 0)
+code = '''
+namespace Outer {
+  namespace Inner {
+    int i = 0;
+  }
+}
+
+int main() {
+  using namespace Outer::Inner;
+  return i;
+}
+'''
+if cxx.compiles(code, name: 'LString check')
+    config_data.set('HAVE_NAMESPACES', 1)
+    config_data.set('XERCES_HAS_CPP_NAMESPACE', 1)
+endif
+### End Namespaces ###
 
 configure_file(
     format: 'cmake@',
