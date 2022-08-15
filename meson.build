@@ -605,6 +605,10 @@ if get_option('path-delimiter-backslash') or \
 endif
 ### End Xerces Path Delimiters ###
 
+### Begin Xerces ICU ###
+# TODO: check anything else required for icu dependency resolution
+### End Xerces ICU ###
+
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
 libnsl = cxx.find_library('nsl', required: false)
@@ -797,10 +801,6 @@ else
     error('invalid transcoder ' + transcoders[0])
 endif
 ### End Transcoder Selection ###
-
-### Begin Xerces Path Delimiters ###
-
-### End Xerces Path Delimiters ###
 
 ### Begin MsgLoaders ###
 msgloaders = []
