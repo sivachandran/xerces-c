@@ -1157,6 +1157,23 @@ if cxx.compiles(code, name: 'StdLibs check', args: stdlibs_args)
 endif
 ### End StdLibs ###
 
+### Begin StdNamespace ###
+config_data.set('HAVE_STD_NAMESPACE', 0)
+config_data.set('XERCES_STD_NAMESPACE', 0)
+code = '''
+#include <iostream>
+std::istream& is = std::cin;
+
+int main() {
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'StdNamespace check')
+    config_data.set('HAVE_STD_NAMESPACE', 1)
+    config_data.set('XERCES_STD_NAMESPACE', 1)
+endif
+### End StdNamespace ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
