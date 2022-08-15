@@ -594,6 +594,17 @@ else
 endif
 ### End Xerces Types ###
 
+### Begin Xerces Path Delimiters ###
+path_delims = '/'
+
+config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 0)
+if get_option('path-delimiter-backslash') or \
+    (host_system == 'windows' and get_option('path-delimiter-backslash').auto())
+    config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 1)
+    path_delims = '\\'
+endif
+### End Xerces Path Delimiters ###
+
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
 libnsl = cxx.find_library('nsl', required: false)
@@ -787,6 +798,10 @@ else
 endif
 ### End Transcoder Selection ###
 
+### Begin Xerces Path Delimiters ###
+
+### End Xerces Path Delimiters ###
+
 ### Begin MsgLoaders ###
 msgloaders = []
 
@@ -953,7 +968,7 @@ summary = [
     '  C++ compiler:              ' + meson.get_compiler('cpp').cmd_array()[0],
     '',
     '  Build shared libraries:    ' + (get_option('default_library') == 'shared').to_string(),
-    ##message('  Path delimiters:           \"${path_delims}\"',
+    '  Path delimiters:           "' + path_delims + '"',
     '  File Manager:              ' + filemgr,
     '  Mutex Manager:             ' + mutexmgrs[0],
     '  Transcoder:                ' + transcoders[0],

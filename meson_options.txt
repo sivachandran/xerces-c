@@ -2,3 +2,5 @@ option('threads', type: 'boolean', value: true, description: 'Enables/Disables t
 
 option('extra-warnings', type: 'boolean', value: false, description: 'Enable extrat compiler warnings')
 option('fatal-warnings', type: 'boolean', value: false, description: 'Compiler warnings are errors')
+
+option('path-delimiter-backslash', type: 'boolean', value: false, description: 'Accept backslash as a path delimiter')
