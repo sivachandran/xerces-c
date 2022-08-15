@@ -1284,6 +1284,20 @@ int main() {
 endif
 ### End SSE2 ###
 
+### Begin Path Max ###
+config_data.set('HAVE_PATH_MAX', 0)
+code = '''
+#include <limits.h>
+int main(void) {
+  char dummy[PATH_MAX];
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'PATH_MAX check')
+    config_data.set('HAVE_PATH_MAX', 1)
+endif
+### End Path Max ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
