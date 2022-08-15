@@ -1089,6 +1089,19 @@ if cxx.compiles(code, name: 'volatile check')
 endif
 ### End Volatile ###
 
+### Begin LString ###
+code = '''
+int main() {
+  const wchar_t* s=L\"wide string\";
+  return 0;
+}
+'''
+config_data.set('HAVE_LSTRING', 0)
+if cxx.compiles(code, name: 'LString check')
+    config_data.set('HAVE_LSTRING', 1)
+endif
+### End LString ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
