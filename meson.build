@@ -1076,6 +1076,19 @@ foreach inline_keyword: inline_keywords
 endforeach
 ### End Inline ###
 
+### Begin Volatile ###
+code = '''
+int main() {
+  volatile int i = 1;
+  return 0;
+}
+'''
+config_data.set('HAVE_VOLATILE', 0)
+if cxx.compiles(code, name: 'volatile check')
+    config_data.set('HAVE_VOLATILE', 1)
+endif
+### End Volatile ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
