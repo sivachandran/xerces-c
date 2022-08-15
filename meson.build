@@ -1363,6 +1363,13 @@ if cxx.compiles(code, name: 'IconvConst check')
 endif
 ### End Path Max ###
 
+### Begin LFS ###
+if host_system == 'linux'
+    add_project_arguments(['-D_FILE_OFFSET_BITS=64'], language: ['c', 'cpp'])
+    config_data.set('FILE_OFFSET_BITS', 64)
+endif
+### End LFS ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
