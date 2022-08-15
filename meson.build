@@ -1019,7 +1019,7 @@ config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 0)
 if cxx.compiles(code, name: 'delete operator check')
     config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 1)
 endif
-### End Operator Delete
+### End Operator Delete ###
 
 ### Begin Bool ###
 code = '''
@@ -1036,7 +1036,7 @@ config_data.set('XERCES_NO_NATIVE_BOOL', 0)
 if cxx.compiles(code, name: 'bool check')
     config_data.set('XERCES_NO_NATIVE_BOOL', 1)
 endif
-### End Bool
+### End Bool ###
 
 ### Begin Const ###
 code = '''
@@ -1049,7 +1049,32 @@ config_data.set('HAVE_CONST', 0)
 if cxx.compiles(code, name: 'const check')
     config_data.set('HAVE_CONST', 1)
 endif
-### End Bool
+### End Bool ###
+
+### Begin Inline ###
+config_data.set('inline_keyword', '')
+config_data.set('NEED_INLINE', 0)
+config_data.set('HAVE_INLINE', 0)
+
+inline_keywords = ['inline', '___inline__', '__inline']
+code = '''
+typedef int foo_t;
+static inline foo_t static_foo() {return 0;}
+foo_t foo(){return 0;}
+int main(int argc, char *argv[]) {return 0;}
+'''
+foreach inline_keyword: inline_keywords
+    if cxx.compiles(code, name: 'inline check', args: ['-Dinline=' + inline_keyword])
+        if not (inline_keyword == 'inline')
+            config_data.set('NEED_INLINE', 1)
+        else
+            config_data.set('HAVE_INLINE', 1)
+        endif
+        config_data.set('inline_keyword', inline_keyword)
+        break
+    endif
+endforeach
+### End Inline ###
 
 configure_file(
     format: 'cmake@',
