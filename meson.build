@@ -1298,6 +1298,51 @@ if cxx.compiles(code, name: 'PATH_MAX check')
 endif
 ### End Path Max ###
 
+### Begin WChar ###
+config_data.set('HAVE_MBRLEN', 0)
+code = '''
+#include <wchar.h>
+int main(void) {
+  mbstate_t st;
+  mbrlen( \"t\", 5, &st );
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'MBRLEN check')
+    config_data.set('HAVE_MBRLEN', 1)
+endif
+
+config_data.set('HAVE_WCSRTOMBS', 0)
+code = '''
+#include <wchar.h>
+int main(void) {
+  mbstate_t st;
+  char buffer[2];
+  const wchar_t* src=0;
+  wcsrtombs(buffer, &src, 2, &st);
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'WCSRTOMBS check')
+    config_data.set('HAVE_WCSRTOMBS', 1)
+endif
+
+config_data.set('HAVE_MBSRTOWCS', 0)
+code = '''
+#include <wchar.h>
+int main(void) {
+  mbstate_t st;
+  wchar_t buffer[2];
+  const char* src=0;
+  mbsrtowcs(buffer, &src, 2, &st);
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'MBSRTOWCS check')
+    config_data.set('HAVE_MBSRTOWCS', 1)
+endif
+### End WChar ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
