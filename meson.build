@@ -1125,11 +1125,37 @@ int main() {
   return i;
 }
 '''
-if cxx.compiles(code, name: 'LString check')
+if cxx.compiles(code, name: 'Namespaces check')
     config_data.set('HAVE_NAMESPACES', 1)
     config_data.set('XERCES_HAS_CPP_NAMESPACE', 1)
 endif
 ### End Namespaces ###
+
+### Begin StdLibs ###
+config_data.set('HAVE_NAMESPACES', 0)
+config_data.set('XERCES_NEW_IOSTREAMS', 0)
+code = '''
+#include <map>
+#include <iomanip>
+#include <cmath>
+#ifdef HAVE_NAMESPACES
+using namespace std;
+#endif
+
+int main() {
+  return 0;
+}
+'''
+stdlibs_args = []
+if config_data.get('HAVE_NAMESPACES') == 1
+    stdlibs_args += ['-DHAVE_NAMESPACES']
+endif
+
+if cxx.compiles(code, name: 'StdLibs check', args: stdlibs_args)
+    config_data.set('HAVE_NAMESPACES', 1)
+    config_data.set('XERCES_NEW_IOSTREAMS', 1)
+endif
+### End StdLibs ###
 
 configure_file(
     format: 'cmake@',
