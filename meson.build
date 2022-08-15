@@ -1343,6 +1343,26 @@ if cxx.compiles(code, name: 'MBSRTOWCS check')
 endif
 ### End WChar ###
 
+### Begin Path Max ###
+config_data.set('ICONV_USES_CONST_POINTER', 0)
+code = '''
+#include <iconv.h>
+
+int main(void) {
+  const char *fromPtr=0;
+  size_t     fromLen=0;
+  char       *toPtr=0;
+  size_t     toLen=0;
+  iconv_t    cv=0;
+  iconv(cv, &fromPtr, &fromLen, &toPtr, &toLen);
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'IconvConst check')
+    config_data.set('ICONV_USES_CONST_POINTER', 1)
+endif
+### End Path Max ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
