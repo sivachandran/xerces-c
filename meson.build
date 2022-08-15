@@ -1,4 +1,4 @@
-project('xerces-c', 'cpp',
+project('xerces-c', ['c','cpp'],
         version: '3.2.3',
         license: 'Apache v2.0',
         default_options: [
@@ -35,6 +35,54 @@ config_data.set('INTERFACE_VERSION_MINOR', interface_version_minor)
 config_data.set('INTERFACE_VERSION_D', '@0@.@1@'.format(interface_version_major, interface_version_minor))
 config_data.set('INTERFACE_VERSION_U', '@0@_@1@'.format(interface_version_major, interface_version_minor))
 config_data.set('XERCES_GRAMMAR_SERIALIZATION_LEVEL', grammar_serialization_level)
+
+### Begin Xerces Warnings ###
+compiler_args = []
+if cxx.get_id() == 'gcc' or cxx.get_id() == 'clang'
+    compiler_args += [
+      '-Wall',
+      '-Wcast-align',
+      '-Wcast-qual',
+      '-Wctor-dtor-privacy',
+      '-Wextra',
+      '-Wformat=2',
+      '-Wimplicit-atomic-properties',
+      '-Wmissing-declarations',
+      '-Wno-long-long',
+      '-Woverlength-strings',
+      '-Woverloaded-virtual',
+      '-Wredundant-decls',
+      '-Wreorder',
+      '-Wswitch-default',
+      '-Wunused-variable',
+      '-Wwrite-strings',
+      '-Wno-variadic-macros',
+      '-fstrict-aliasing',
+    ]
+
+    if get_option('extra-warnings')
+        compiler_args += [
+            '-Wfloat-equal',
+            '-Wmissing-prototypes',
+            '-Wunreachable-code'
+        ]
+    endif
+
+    if get_option('fatal-warnings')
+        compiler_args += ['-Werror']
+    endif
+elif cxx.get_id() == 'msvc'
+    if get_option('extra-warnings')
+        compiler_args += ['/W4']
+    endif
+
+    if get_option('fatal-warnings')
+        compiler_args += ['-WX']
+    endif
+endif
+
+add_global_arguments(cxx.get_supported_arguments(compiler_args), language: ['c', 'cpp'])
+### End Xerces Warnings
 
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
@@ -83,7 +131,6 @@ elif netaccessors[0] == 'winsock'
 else
     error('invalid netaccessor' + netaccessors[0])
 endif
-
 ### End NetAccessor Selection ###
 
 ### Begin Transcoder Selection ###
@@ -359,18 +406,19 @@ endif
 ### End MutexMgr Selection ###
 
 ### Begin FileMgr Selection ###
-
 config_data.set('XERCES_USE_FILEMGR_POSIX', 0)
 config_data.set('XERCES_USE_FILEMGR_WINDOWS', 0)
 
+filemgr = ''
 if host_system == 'windows'
     config_data.set('XERCES_USE_FILEMGR_WINDOWS', 1)
+    filemgr = 'windows'
 elif host_system == 'linux'
     config_data.set('XERCES_USE_FILEMGR_POSIX', 1)
+    filemgr = 'POSIX'
 else
     error('invalid file manager ' + host_system)
 endif
-
 ### End FileMgr Selection ###
 
 configure_file(
@@ -381,3 +429,23 @@ configure_file(
 
 subdir('src')
 subdir('src/xercesc/util')
+
+message('')
+message('Xerces-C++ configuration summary')
+message('--------------------------------')
+message('')
+message('  Version:                   ' + xercesc_version)
+message('  Library interface version: ' + interface_version)
+message('')
+message('  Installation directory:    ' + get_option('prefix'))
+message('  C compiler:                ' + meson.get_compiler('c').cmd_array()[0])
+message('  C++ compiler:              ' + meson.get_compiler('cpp').cmd_array()[0])
+message('')
+# TODO: message('  Build shared libraries:    ${BUILD_SHARED_LIBS}')
+# TODO: message('  Path delimiters:           \"${path_delims}\"')
+message('  File Manager:              ' + filemgr)
+message('  Mutex Manager:             ' + mutexmgrs[0])
+message('  Transcoder:                ' + transcoders[0])
+message('  NetAccessor:               ' + netaccessors[0])
+message('  Message Loader:            ' + msgloaders[0])
+# TODO: message('  XMLCh type:                ' + ${xmlch_type}')
