@@ -81,7 +81,7 @@ elif cxx.get_id() == 'msvc'
     endif
 endif
 
-add_global_arguments(cxx.get_supported_arguments(compiler_args), language: ['c', 'cpp'])
+add_project_arguments(cxx.get_supported_arguments(compiler_args), language: ['c', 'cpp'])
 ### End Xerces Warnings
 
 ### Begin Xerces Includes ###
@@ -862,7 +862,7 @@ endif
 
 if threads
     threads_prefer_pthread = true
-    add_global_arguments('-D_THREAD_SAFE=1', language: 'cpp')
+    add_project_arguments(['-D_THREAD_SAFE=1'], language: ['c', 'cpp'])
 
     code = '''
 #include <thread>
@@ -1173,6 +1173,116 @@ if cxx.compiles(code, name: 'StdNamespace check')
     config_data.set('XERCES_STD_NAMESPACE', 1)
 endif
 ### End StdNamespace ###
+
+### Begin SSE2 ###
+if get_option('sse2')
+    proj_args = []
+    if cxx.get_id() == 'gcc' or cxx.get_id() == 'clang'
+        code = '''
+#include <emmintrin.h>
+
+int main() {
+  __m128i one;
+  return 0;
+}
+        '''
+        if cxx.compiles(code, name: '-msse2 check', args: ['-msse2'])
+            proj_args += ['-msse2']
+        endif
+    endif
+
+    # intrin
+    config_data.set('XERCES_HAVE_INTRIN_H', 0)
+    code = '''
+#include <intrin.h>
+
+int main() {
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'intrin.h check')
+        config_data.set('XERCES_HAVE_INTRIN_H', 1)
+    endif
+
+    # emmintrin
+    config_data.set('XERCES_HAVE_EMMINTRIN_H', 0)
+    code = '''
+#include <emmintrin.h>
+
+int main() {
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'emmintrin.h check')
+        config_data.set('XERCES_HAVE_EMMINTRIN_H', 1)
+    endif
+
+    # cpuid
+    config_data.set('HAVE_CPUID_H', 0)
+    code = '''
+#include <cpuid.h>
+
+int main() {
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'cpuid.h check')
+        config_data.set('HAVE_CPUID_H', 1)
+    endif
+
+    # cpuid intrinsic
+    config_data.set('XERCES_HAVE_CPUID_INTRINSIC', 0)
+    code = '''
+#include <intrin.h>
+
+int main() {
+  int CPUInfo[4];
+  __cpuid(CPUInfo, 1);
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'cpuid intrinsic check')
+        config_data.set('XERCES_HAVE_CPUID_INTRINSIC', 1)
+    endif
+
+    # getcpuid
+    config_data.set('XERCES_HAVE_GETCPUID', 0)
+    code = '''
+#include <cpuid.h>
+
+int main() {
+  unsigned int eax, ebx, ecx, edx;
+  __get_cpuid (1, &eax, &ebx, &ecx, &edx);
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'getcpuid check')
+        config_data.set('XERCES_HAVE_GETCPUID', 1)
+    endif
+
+    # sse2 intrinsic
+    config_data.set('XERCES_HAVE_SSE2_INTRINSIC', 0)
+    code = '''
+#include <emmintrin.h>
+
+int main() {
+  __m128i* one=(__m128i*)_mm_malloc(4, 16);
+  __m128i* two=(__m128i*)_mm_malloc(4, 16);
+  __m128i xmm1 = _mm_load_si128(one);
+  __m128i xmm2 = _mm_load_si128(two);
+  __m128i xmm3 = _mm_or_si128(xmm1, xmm2);
+  _mm_store_si128(one, xmm3);
+  _mm_free(one);
+  _mm_free(two);
+  return 0;
+}
+'''
+    if cxx.compiles(code, name: 'sse2 intrinsic')
+        config_data.set('XERCES_HAVE_SSE2_INTRINSIC', 1)
+        add_project_arguments(proj_args, language: ['c', 'cpp'])
+    endif
+endif
+### End SSE2 ###
 
 configure_file(
     format: 'cmake@',
