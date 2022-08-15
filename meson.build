@@ -228,6 +228,204 @@ endif
 config_data.set('XERCES_HAVE_SYS_TYPES_H', config_data.get('HAVE_SYS_TYPES_H'))
 ### End Xerces Includes
 
+### Begin Xerces Functions ###
+config_data.get('HAVE_GETCWD', 0)
+if cxx.has_function('getcwd')
+    config_data.set('HAVE_GETCWD', 1)
+endif
+
+config_data.get('HAVE_PATHCONF', 0)
+if cxx.has_function('pathconf')
+    config_data.set('HAVE_PATHCONF', 1)
+endif
+
+config_data.get('HAVE_REALPATH', 0)
+if cxx.has_function('realpath')
+    config_data.set('HAVE_REALPATH', 1)
+endif
+
+config_data.get('HAVE_GETADDRINFO', 0)
+if cxx.has_function('getaddrinfo')
+    config_data.set('HAVE_GETADDRINFO', 1)
+endif
+
+config_data.get('HAVE_GETHOSTBYADDR', 0)
+if cxx.has_function('gethostbyaddr')
+    config_data.set('HAVE_GETHOSTBYADDR', 1)
+endif
+
+config_data.get('HAVE_GETHOSTBYNAME', 0)
+if cxx.has_function('gethostbyname')
+    config_data.set('HAVE_GETHOSTBYNAME', 1)
+endif
+
+config_data.get('HAVE_SOCKET', 0)
+if cxx.has_function('socket')
+    config_data.set('HAVE_SOCKET', 1)
+endif
+
+config_data.get('HAVE_CLOCK_GETTIME', 0)
+if cxx.has_function('clock_gettime')
+    config_data.set('HAVE_CLOCK_GETTIME', 1)
+endif
+
+config_data.get('HAVE_FTIME', 0)
+if cxx.has_function('ftime')
+    config_data.set('HAVE_FTIME', 1)
+endif
+
+config_data.get('HAVE_GETTIMEOFDAY', 0)
+if cxx.has_function('gettimeofday')
+    config_data.set('HAVE_GETTIMEOFDAY', 1)
+endif
+
+config_data.get('HAVE_GMTIME_R', 0)
+if cxx.has_function('gmtime_r')
+    config_data.set('HAVE_GMTIME_R', 1)
+endif
+
+config_data.get('HAVE_MEMMOVE', 0)
+if cxx.has_function('memmove')
+    config_data.set('HAVE_MEMMOVE', 1)
+endif
+
+config_data.get('HAVE_MEMSET', 0)
+if cxx.has_function('memset')
+    config_data.set('HAVE_MEMSET', 1)
+endif
+
+config_data.get('HAVE_NL_LANGINFO', 0)
+if cxx.has_function('nl_langinfo')
+    config_data.set('HAVE_NL_LANGINFO', 1)
+endif
+
+config_data.get('HAVE_SETLOCALE', 0)
+if cxx.has_function('setlocale')
+    config_data.set('HAVE_SETLOCALE', 1)
+endif
+
+config_data.get('HAVE_LOCALECONV', 0)
+if cxx.has_function('localeconv')
+    config_data.set('HAVE_LOCALECONV', 1)
+endif
+
+config_data.get('HAVE_SNPRINTF', 0)
+if cxx.has_function('snprintf')
+    config_data.set('HAVE_SNPRINTF', 1)
+endif
+
+config_data.get('HAVE_STRCASECMP', 0)
+if cxx.has_function('strcasecmp')
+    config_data.set('HAVE_STRCASECMP', 1)
+endif
+
+config_data.get('HAVE_STRNCASECMP', 0)
+if cxx.has_function('strncasecmp')
+    config_data.set('HAVE_STRNCASECMP', 1)
+endif
+
+config_data.get('HAVE_STRICMP', 0)
+if cxx.has_function('stricmp')
+    config_data.set('HAVE_STRICMP', 1)
+endif
+
+config_data.get('HAVE_STRNICMP', 0)
+if cxx.has_function('strnicmp')
+    config_data.set('HAVE_STRNICMP', 1)
+endif
+
+config_data.get('HAVE_STRCHR', 0)
+if cxx.has_function('strchr')
+    config_data.set('HAVE_STRCHR', 1)
+endif
+
+config_data.get('HAVE_STRDUP', 0)
+if cxx.has_function('strdup')
+    config_data.set('HAVE_STRDUP', 1)
+endif
+
+config_data.get('HAVE_STRRCHR', 0)
+if cxx.has_function('strrchr')
+    config_data.set('HAVE_STRRCHR', 1)
+endif
+
+config_data.get('HAVE_STRSTR', 0)
+if cxx.has_function('strstr')
+    config_data.set('HAVE_STRSTR', 1)
+endif
+
+config_data.get('HAVE_STRTOL', 0)
+if cxx.has_function('strtol')
+    config_data.set('HAVE_STRTOL', 1)
+endif
+
+config_data.get('HAVE_STRTOUL', 0)
+if cxx.has_function('strtoul')
+    config_data.set('HAVE_STRTOUL', 1)
+endif
+
+config_data.get('HAVE_TIMEGM', 0)
+if cxx.has_function('timegm')
+    config_data.set('HAVE_TIMEGM', 1)
+endif
+
+config_data.get('HAVE_TOWUPPER', 0)
+if cxx.has_function('towupper')
+    config_data.set('HAVE_TOWUPPER', 1)
+endif
+
+config_data.get('HAVE_TOWLOWER', 0)
+if cxx.has_function('towlower')
+    config_data.set('HAVE_TOWLOWER', 1)
+endif
+
+config_data.get('HAVE_MBLEN', 0)
+if cxx.has_function('mblen')
+    config_data.set('HAVE_MBLEN', 1)
+endif
+
+config_data.get('HAVE_WCSUPR', 0)
+if cxx.has_function('wcsupr')
+    config_data.set('HAVE_WCSUPR', 1)
+endif
+
+config_data.get('HAVE_WCSLWR', 0)
+if cxx.has_function('wcslwr')
+    config_data.set('HAVE_WCSLWR', 1)
+endif
+
+config_data.get('HAVE_WCSNICMP', 0)
+if cxx.has_function('wcsnicmp')
+    config_data.set('HAVE_WCSNICMP', 1)
+endif
+
+config_data.get('HAVE_WCSICMP', 0)
+if cxx.has_function('wcsicmp')
+    config_data.set('HAVE_WCSICMP', 1)
+endif
+### End Xerces Functions ###
+
+### Begin Xerces DLL ###
+config_data.set('XERCES_PLATFORM_EXPORT', '')
+config_data.set('XERCES_PLATFORM_IMPORT', '')
+config_data.set('XERCES_TEMPLATE_EXTERN', 'extern')
+config_data.set('XERCES_DLL_EXPORT', 0)
+config_data.set('XERCES_STATIC_LIBRARY', 0)
+
+if get_option('default_library') == 'static'
+    config_data.set('XERCES_STATIC_LIBRARY', 1)
+else
+    if host_system == 'windows'
+        config_data.set('XERCES_PLATFORM_EXPORT', '__declspec(dllexport)')
+        config_data.set('XERCES_PLATFORM_IMPORT', '__declspec(dllimport)')
+        if cxx.get_id() == 'msvc'
+            config_data.set('XERCES_TEMPLATE_EXTERN', '')
+        endif
+        config_data.set('XERCES_DLL_EXPORT', 1)
+    endif
+endif
+### End Xerces DLL ###
+
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
 libnsl = cxx.find_library('nsl', required: false)
@@ -574,22 +772,26 @@ configure_file(
 subdir('src')
 subdir('src/xercesc/util')
 
-message('')
-message('Xerces-C++ configuration summary')
-message('--------------------------------')
-message('')
-message('  Version:                   ' + xercesc_version)
-message('  Library interface version: ' + interface_version)
-message('')
-message('  Installation directory:    ' + get_option('prefix'))
-message('  C compiler:                ' + meson.get_compiler('c').cmd_array()[0])
-message('  C++ compiler:              ' + meson.get_compiler('cpp').cmd_array()[0])
-message('')
-# TODO: message('  Build shared libraries:    ${BUILD_SHARED_LIBS}')
-# TODO: message('  Path delimiters:           \"${path_delims}\"')
-message('  File Manager:              ' + filemgr)
-message('  Mutex Manager:             ' + mutexmgrs[0])
-message('  Transcoder:                ' + transcoders[0])
-message('  NetAccessor:               ' + netaccessors[0])
-message('  Message Loader:            ' + msgloaders[0])
+summary = [
+    '',
+    'Xerces-C++ configuration summary',
+    '--------------------------------',
+    '',
+    '  Version:                   ' + xercesc_version,
+    '  Library interface version: ' + interface_version,
+    '',
+    '  Installation directory:    ' + get_option('prefix'),
+    '  C compiler:                ' + meson.get_compiler('c').cmd_array()[0],
+    '  C++ compiler:              ' + meson.get_compiler('cpp').cmd_array()[0],
+    '',
+    '  Build shared libraries:    ' + (get_option('default_library') == 'shared').to_string(),
+    ##message('  Path delimiters:           \"${path_delims}\"',
+    '  File Manager:              ' + filemgr,
+    '  Mutex Manager:             ' + mutexmgrs[0],
+    '  Transcoder:                ' + transcoders[0],
+    '  NetAccessor:               ' + netaccessors[0],
+    '  Message Loader:            ' + msgloaders[0],
+]
+message('\n'.join(summary))
+
 # TODO: message('  XMLCh type:                ' + ${xmlch_type}')
