@@ -946,6 +946,59 @@ else
 endif
 ### End FileMgr Selection ###
 
+### Begin Xerces XML Ch ###
+xmlch_types = []
+code = '''
+int main() {
+  const char16_t *unicode = u\"Test ünícodè → ©\";
+  return 0;
+}
+'''
+if cxx.compiles(code, name: 'XMLCh check')
+    if not cxx.sizeof('char16_t') == 2
+        warning('char16_t is not a 16-bit type')
+    elif host_system == 'windows' and not cxx.sizeof('wchar_t') == 2
+        warning('wchar_t is not a 16-bit type, and size differs from char16_t')
+    else
+        xmlch_types += ['char16_t']
+    endif
+endif
+
+if host_system == 'windows'
+    code = '''
+#include <windows.h>
+
+wchar_t file[] = L\"dummy.file\";
+
+int main() {
+  DeleteFileW(file);
+  return 0;
+}
+    '''
+    if cxx.compiles(code, name: 'Windows wchar check')
+        xmlch_types += ['wchar_t']
+    endif
+endif
+
+xmlch_types += ['uint16_t']
+
+if xmlch_types.length() == 0
+    error('xmlch_type unavailable')
+endif
+
+config_data.set('XERCES_XMLCH_T', config_data.get('XERCES_U16BIT_INT'))
+config_data.set('XERCES_USE_CHAR16_T', 0)
+config_data.set('XERCES_INCLUDE_WCHAR_H', 0)
+
+if xmlch_types[0] == 'char16_t'
+    config_data.set('XERCES_XMLCH_T', 'char16_t')
+    config_data.set('XERCES_USE_CHAR16_T', 1)
+elif xmlch_types[0] == 'wchar_t'
+    config_data.set('XERCES_XMLCH_T', 'wchar_t')
+    config_data.set('XERCES_INCLUDE_WCHAR_H', 1)
+endif
+### End Xerces XML Ch ###
+
 configure_file(
     format: 'cmake@',
     input: 'config.h.cmake.in',
@@ -974,7 +1027,8 @@ summary = [
     '  Transcoder:                ' + transcoders[0],
     '  NetAccessor:               ' + netaccessors[0],
     '  Message Loader:            ' + msgloaders[0],
+    '  XMLCh type:                ' + xmlch_types[0],
 ]
 message('\n'.join(summary))
 
-# TODO: message('  XMLCh type:                ' + ${xmlch_type}')
+# TODO: message()
