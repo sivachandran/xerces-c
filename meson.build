@@ -84,6 +84,150 @@ endif
 add_global_arguments(cxx.get_supported_arguments(compiler_args), language: ['c', 'cpp'])
 ### End Xerces Warnings
 
+### Begin Xerces Includes ###
+config_data.set('HAVE_ARPA_INET_H', 0)
+if cxx.has_header('arpa/inet.h')
+    config_data.set('HAVE_ARPA_INET_H', 1)
+endif
+
+config_data.set('HAVE_DLFCN_H', 0)
+if cxx.has_header('dlfcn.h')
+    config_data.set('HAVE_DLFCN_H', 1)
+endif
+
+config_data.set('HAVE_FCNTL_H', 0)
+if cxx.has_header('fcntl.h')
+    config_data.set('HAVE_FCNTL_H', 1)
+endif
+
+config_data.set('HAVE_FLOAT_H', 0)
+if cxx.has_header('float.h')
+    config_data.set('HAVE_FLOAT_H', 1)
+endif
+
+config_data.set('HAVE_LANGINFO_H', 0)
+if cxx.has_header('langinfo.h')
+    config_data.set('HAVE_LANGINFO_H', 1)
+endif
+
+config_data.set('HAVE_LIMITS_H', 0)
+if cxx.has_header('limits.h')
+    config_data.set('HAVE_LIMITS_H', 1)
+endif
+
+config_data.set('HAVE_LOCALE_H', 0)
+if cxx.has_header('locale.h')
+    config_data.set('HAVE_LOCALE_H', 1)
+endif
+
+config_data.set('HAVE_MEMORY_H', 0)
+if cxx.has_header('memory.h')
+    config_data.set('HAVE_MEMORY_H', 1)
+endif
+
+config_data.set('HAVE_NETDB_H', 0)
+if cxx.has_header('netdb.h')
+    config_data.set('HAVE_NETDB_H', 1)
+endif
+
+config_data.set('HAVE_NETINET_IN_H', 0)
+if cxx.has_header('netinet/in.h')
+    config_data.set('HAVE_NETINET_IN_H', 1)
+endif
+
+config_data.set('HAVE_NL_TYPES_H', 0)
+if cxx.has_header('nl_types.h')
+    config_data.set('HAVE_NL_TYPES_H', 1)
+endif
+
+config_data.set('HAVE_STDBOOL_H', 0)
+if cxx.has_header('stdbool.h')
+    config_data.set('HAVE_STDBOOL_H', 1)
+endif
+
+config_data.set('HAVE_STDDEF_H', 0)
+if cxx.has_header('stddef.h')
+    config_data.set('HAVE_STDDEF_H', 1)
+endif
+
+config_data.set('HAVE_STDLIB_H', 0)
+if cxx.has_header('stdlib.h')
+    config_data.set('HAVE_STDLIB_H', 1)
+endif
+
+config_data.set('HAVE_STRING_H', 0)
+if cxx.has_header('string.h')
+    config_data.set('HAVE_STRING_H', 1)
+endif
+
+config_data.set('HAVE_STRINGS_H', 0)
+if cxx.has_header('strings.h')
+    config_data.set('HAVE_STRINGS_H', 1)
+endif
+
+config_data.set('HAVE_SYS_PARAM_H', 0)
+if cxx.has_header('sys/param.h')
+    config_data.set('HAVE_SYS_PARAM_H', 1)
+endif
+
+config_data.set('HAVE_SYS_SOCKET_H', 0)
+if cxx.has_header('sys/socket.h')
+    config_data.set('HAVE_SYS_SOCKET_H', 1)
+endif
+
+config_data.set('HAVE_SYS_STAT_H', 0)
+if cxx.has_header('sys/stat.h')
+    config_data.set('HAVE_SYS_STAT_H', 1)
+endif
+
+config_data.set('HAVE_SYS_TIME_H', 0)
+if cxx.has_header('sys/time.h')
+    config_data.set('HAVE_SYS_TIME_H', 1)
+endif
+
+config_data.set('HAVE_SYS_TIMEB_H', 0)
+if cxx.has_header('sys/timeb.h')
+    config_data.set('HAVE_SYS_TIMEB_H', 1)
+endif
+
+config_data.set('HAVE_SYS_TYPES_H', 0)
+if cxx.has_header('sys/types.h')
+    config_data.set('HAVE_SYS_TYPES_H', 1)
+endif
+
+config_data.set('HAVE_UNISTD_H', 0)
+if cxx.has_header('unistd.h')
+    config_data.set('HAVE_UNISTD_H', 1)
+endif
+
+config_data.set('HAVE_WCHAR_H', 0)
+if cxx.has_header('wchar.h')
+    config_data.set('HAVE_WCHAR_H', 1)
+endif
+
+config_data.set('HAVE_WCTYPE_H', 0)
+if cxx.has_header('wctype.h')
+    config_data.set('HAVE_WCTYPE_H', 1)
+endif
+
+config_data.set('HAVE_ENDIAN_H', 0)
+if cxx.has_header('endian.h')
+    config_data.set('HAVE_ENDIAN_H', 1)
+endif
+
+config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
+if cxx.has_header('machine/endian.h')
+    config_data.set('HAVE_MACHINE_ENDIAN_H', 1)
+endif
+
+config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
+if cxx.has_header('arpa/nameser_compat.h')
+    config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
+endif
+
+config_data.set('XERCES_HAVE_SYS_TYPES_H', config_data.get('HAVE_SYS_TYPES_H'))
+### End Xerces Includes
+
 ### Begin NetAccessor Selection ###
 libsocket = cxx.find_library('socket', required: false)
 libnsl = cxx.find_library('nsl', required: false)
