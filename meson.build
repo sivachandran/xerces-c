@@ -3,6 +3,7 @@ project('xerces-c', ['c','cpp'],
         license: 'Apache v2.0',
         default_options: [
             'default_library=static',
+            'warning_level=1',
         ])
 
 project_name = meson.project_name()
@@ -630,8 +631,10 @@ if host_system == 'windows'
         netaccessors += 'winsock'
     endif
 else
-    libcurl = cxx.find_library('curl', required: false)
-    netaccessors += 'curl'
+    curl_dep = dependency('curl', required: false)
+    if curl_dep.found()
+        netaccessors += 'curl'
+    endif
 
     if cxx.has_header('sys/socket.h')
         config_data.set('HAVE_SYS_SOCKET_H', 1)
@@ -814,8 +817,8 @@ endif
 ### Begin MsgLoaders ###
 msgloaders = []
 
-icu = cxx.find_library('icu', required: false)
-if icu.found()
+libicu = cxx.find_library('icu', required: false)
+if libicu.found()
     msgloaders += 'icu'
 endif
 
@@ -1024,9 +1027,9 @@ int main() {
   return 0;
 }
 '''
-config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 0)
-if cxx.compiles(code, name: 'delete operator check')
-    config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 1)
+config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', true)
+if cxx.compiles(code, name: 'matching delete operator check')
+    config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', false)
 endif
 ### End Operator Delete ###
 
@@ -1041,9 +1044,9 @@ int main() {
   return f(b);
 }
 '''
-config_data.set('XERCES_NO_NATIVE_BOOL', 0)
+config_data.set('XERCES_NO_NATIVE_BOOL', true)
 if cxx.compiles(code, name: 'bool check')
-    config_data.set('XERCES_NO_NATIVE_BOOL', 1)
+    config_data.set('XERCES_NO_NATIVE_BOOL', false)
 endif
 ### End Bool ###
 

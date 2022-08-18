@@ -387,7 +387,7 @@ sax2_headers = [
 ]
 
 sax2_sources = [
-      'xerces/sax2/sax2Dummy.cpp,',
+      'xercesc/sax2/sax2Dummy.cpp,',
 ]
 
 util_headers = [
@@ -802,116 +802,116 @@ validators_sources = [
 ]
 
 xinclude_headers = [
-    'xerces/xinclude/XIncludeDOMDocumentProcessor.hpp',
-    'xerces/xinclude/XIncludeLocation.hpp',
-    'xerces/xinclude/XIncludeUtils.hpp',
+    'xercesc/xinclude/XIncludeDOMDocumentProcessor.hpp',
+    'xercesc/xinclude/XIncludeLocation.hpp',
+    'xercesc/xinclude/XIncludeUtils.hpp',
 ]
 
 xinclude_sources = [
-    'xerces/xinclude/XIncludeDOMDocumentProcessor.cpp',
-    'xerces/xinclude/XIncludeLocation.cpp',
-    'xerces/xinclude/XIncludeUtils.cpp',
+    'xercesc/xinclude/XIncludeDOMDocumentProcessor.cpp',
+    'xercesc/xinclude/XIncludeLocation.cpp',
+    'xercesc/xinclude/XIncludeUtils.cpp',
 ]
 
 icu_headers = [
-    'xerces/util/Transcoders/ICU/ICUTransService.hpp',
+    'xercesc/util/Transcoders/ICU/ICUTransService.hpp',
 ]
 
 icu_sources = [
-    'xerces/util/Transcoders/ICU/ICUTransService.cpp',
+    'xercesc/util/Transcoders/ICU/ICUTransService.cpp',
 ]
 
 gnuiconv_headers = [
-    'xerces/util/Transcoders/IconvGNU/IconvGNUTransService.hpp',
+    'xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.hpp',
 ]
 
 gnuiconv_sources = [
-    'xerces/util/Transcoders/IconvGNU/IconvGNUTransService.cpp',
+    'xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.cpp',
 ]
 
 iconv_headers = [
-    'xerces/util/Transcoders/Iconv/IconvTransService.hpp',
+    'xercesc/util/Transcoders/Iconv/IconvTransService.hpp',
 ]
 
 iconv_sources = [
-    'xerces/util/Transcoders/Iconv/IconvTransService.cpp',
+    'xercesc/util/Transcoders/Iconv/IconvTransService.cpp',
 ]
 
 macosunicodeconverter_headers = [
-    'xerces/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.hpp',
+    'xercesc/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.hpp',
 ]
 
 macosunicodeconverter_sources = [
-    'xerces/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.cpp',
+    'xercesc/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.cpp',
 ]
 
 wintrans_headers = [
-    'xerces/util/Transcoders/Win32/Win32TransService.hpp',
+    'xercesc/util/Transcoders/Win32/Win32TransService.hpp',
 ]
 
 wintrans_sources = [
-    'xerces/util/Transcoders/Win32/Win32TransService.cpp',
+    'xercesc/util/Transcoders/Win32/Win32TransService.cpp',
 ]
 
 curl_headers = [
-    'xerces/util/NetAccessors/Curl/CurlNetAccessor.hpp',
-    'xerces/util/NetAccessors/Curl/CurlURLInputStream.hpp',
+    'xercesc/util/NetAccessors/Curl/CurlNetAccessor.hpp',
+    'xercesc/util/NetAccessors/Curl/CurlURLInputStream.hpp',
 ]
 
 curl_sources = [
-    'xerces/util/NetAccessors/Curl/CurlNetAccessor.cpp',
-    'xerces/util/NetAccessors/Curl/CurlURLInputStream.cpp',
+    'xercesc/util/NetAccessors/Curl/CurlNetAccessor.cpp',
+    'xercesc/util/NetAccessors/Curl/CurlURLInputStream.cpp',
 ]
 
 sockets_headers = [
-    'xerces/util/NetAccessors/Socket/SocketNetAccessor.hpp',
-    'xerces/util/NetAccessors/Socket/UnixHTTPURLInputStream.hpp',
-    'xerces/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
+    'xercesc/util/NetAccessors/Socket/SocketNetAccessor.hpp',
+    'xercesc/util/NetAccessors/Socket/UnixHTTPURLInputStream.hpp',
+    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
 ]
 
 sockets_sources = [
-    'xerces/util/NetAccessors/Socket/SocketNetAccessor.cpp',
-    'xerces/util/NetAccessors/Socket/UnixHTTPURLInputStream.cpp',
-    'xerces/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
+    'xercesc/util/NetAccessors/Socket/SocketNetAccessor.cpp',
+    'xercesc/util/NetAccessors/Socket/UnixHTTPURLInputStream.cpp',
+    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
 ]
 
 cfurl_headers = [
-    'xerces/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.hpp',
-    'xerces/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.hpp',
+    'xercesc/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.hpp',
+    'xercesc/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.hpp',
 ]
 
 cfurl_sources = [
-    'xerces/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.cpp',
-    'xerces/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.cpp',
+    'xercesc/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.cpp',
+    'xercesc/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.cpp',
 ]
 
 winsock_headers = [
-    'xerces/util/NetAccessors/WinSock/WinSockNetAccessor.hpp',
-    'xerces/util/NetAccessors/WinSock/BinHTTPURLInputStream.hpp',
-    'xerces/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
+    'xercesc/util/NetAccessors/WinSock/WinSockNetAccessor.hpp',
+    'xercesc/util/NetAccessors/WinSock/BinHTTPURLInputStream.hpp',
+    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
 ]
 
 winsock_sources = [
-    'xerces/util/NetAccessors/WinSock/WinSockNetAccessor.cpp',
-    'xerces/util/NetAccessors/WinSock/BinHTTPURLInputStream.cpp',
-    'xerces/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
+    'xercesc/util/NetAccessors/WinSock/WinSockNetAccessor.cpp',
+    'xercesc/util/NetAccessors/WinSock/BinHTTPURLInputStream.cpp',
+    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
 ]
 
 msginmemory_headers = [
-    'xerces/util/MsgLoaders/InMemory/InMemMsgLoader.hpp',
-    'xerces/util/MsgLoaders/InMemory/XercesMessages_en_US.hpp',
+    'xercesc/util/MsgLoaders/InMemory/InMemMsgLoader.hpp',
+    'xercesc/util/MsgLoaders/InMemory/XercesMessages_en_US.hpp',
 ]
 
 msginmemory_sources = [
-    'xerces/util/MsgLoaders/InMemory/InMemMsgLoader.cpp',
+    'xercesc/util/MsgLoaders/InMemory/InMemMsgLoader.cpp',
 ]
 
 msgicu_headers = [
-    'xerces/util/MsgLoaders/ICU/ICUMsgLoader.hpp',
+    'xercesc/util/MsgLoaders/ICU/ICUMsgLoader.hpp',
 ]
 
 msgicu_sources = [
-    'xerces/util/MsgLoaders/ICU/ICUMsgLoader.cpp',
+    'xercesc/util/MsgLoaders/ICU/ICUMsgLoader.cpp',
 ]
 
 msgicu_nodist_sources = [
@@ -920,60 +920,60 @@ msgicu_nodist_sources = [
 ]
 
 msgiconv_headers = [
-    'xerces/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.hpp',
-    'xerces/util/MsgLoaders/MsgCatalog/XMLMsgCat_Ids.hpp',
+    'xercesc/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.hpp',
+    'xercesc/util/MsgLoaders/MsgCatalog/XMLMsgCat_Ids.hpp',
 ]
 
 msgiconv_sources = [
-    'xerces/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.cpp',
+    'xercesc/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.cpp',
 ]
 
 posixfmgr_headers = [
-    'xerces/util/FileManagers/PosixFileMgr.hpp',
+    'xercesc/util/FileManagers/PosixFileMgr.hpp',
 ]
 
 posixfmgr_sources = [
-    'xerces/util/FileManagers/PosixFileMgr.cpp',
+    'xercesc/util/FileManagers/PosixFileMgr.cpp',
 ]
 
 winfmgr_headers = [
-    'xerces/util/FileManagers/WindowsFileMgr.hpp',
+    'xercesc/util/FileManagers/WindowsFileMgr.hpp',
 ]
 
 winfmgr_sources = [
-    'xerces/util/FileManagers/WindowsFileMgr.cpp',
+    'xercesc/util/FileManagers/WindowsFileMgr.cpp',
 ]
 
 nothreadmmgr_headers = [
-    'xerces/util/MutexManagers/NoThreadMutexMgr.hpp',
+    'xercesc/util/MutexManagers/NoThreadMutexMgr.hpp',
 ]
 
 nothreadmmgr_sources = [
-    'xerces/util/MutexManagers/NoThreadMutexMgr.cpp',
+    'xercesc/util/MutexManagers/NoThreadMutexMgr.cpp',
 ]
 
 stdmmgr_headers = [
-    'xerces/util/MutexManagers/StdMutexMgr.hpp',
+    'xercesc/util/MutexManagers/StdMutexMgr.hpp',
 ]
 
 stdmmgr_sources = [
-    'xerces/util/MutexManagers/StdMutexMgr.cpp',
+    'xercesc/util/MutexManagers/StdMutexMgr.cpp',
 ]
 
 posixmmgr_headers = [
-    'xerces/util/MutexManagers/PosixMutexMgr.hpp',
+    'xercesc/util/MutexManagers/PosixMutexMgr.hpp',
 ]
 
 posixmmgr_sources = [
-    'xerces/util/MutexManagers/PosixMutexMgr.cpp',
+    'xercesc/util/MutexManagers/PosixMutexMgr.cpp',
 ]
 
 winmmgr_headers = [
-    'xerces/util/MutexManagers/WindowsMutexMgr.hpp',
+    'xercesc/util/MutexManagers/WindowsMutexMgr.hpp',
 ]
 
 winmmgr_sources = [
-    'xerces/util/MutexManagers/WindowsMutexMgr.cpp',
+    'xercesc/util/MutexManagers/WindowsMutexMgr.cpp',
 ]
 
 libxerces_c_sources = [
@@ -1007,6 +1007,7 @@ libxerces_c_headers = [
 libxerces_c_deps = []
 libxerces_c_sources = []
 libxerces_c_headers = []
+libxerces_c_resources = []
 
 # NetAccessors, conditionally built based on selection
 if libsocket.found()
@@ -1020,7 +1021,7 @@ endif
 if config_data.get('XERCES_USE_NETACCESSOR_CURL') == 1
     libxerces_c_sources += curl_sources
     libxerces_c_headers += curl_headers
-    libxerces_c_deps += libcurl
+    libxerces_c_deps += curl_dep
 endif
 
 if config_data.get('XERCES_USE_NETACCESSOR_SOCKET') == 1
@@ -1077,7 +1078,7 @@ if config_data.get('XERCES_USE_MSGLOADER_ICU') == 1
     libxerces_c_sources += msgicu_sources
     libxerces_c_sources += msgicu_nodist_sources
     libxerces_c_headers += msgicu_headers
-    libxerces_c_deps += ['ICU::uc', 'ICU::data']
+    libxerces_c_deps += libicu
 
     pkgname = 'xercesc_messages_' + config_data.get('INTERFACE_VERSION_U')
 
@@ -1156,3 +1157,23 @@ if config_data.get('XERCES_USE_FILEMGR_WINDOWS') == 1
     libxerces_c_sources += winfmgr_sources
     libxerces_c_headers += winfmgr_headers
 endif
+
+# Windows resource.  With some additional work to clean it up, it
+# might be possible to use with Cygwin and MinGW.
+if host_system == 'windows'
+    libxerces_c_resources += source_root + '/xercesc/util/version.rc'
+endif
+
+# Definitions required for building
+add_project_arguments(['-DHAVE_CONFIG_H=1', '-DXERCES_BUILDING_LIBRARY=1'], language:['c', 'cpp'])
+
+# Search the project binary dir for config.h
+# TODO: do we really need separate include_directories specification?
+
+#libxerces_c_headers_dep = declare_dependency(sources: libxerces_c_headers)
+
+library('xerces-c',
+    sources: libxerces_c_sources + libxerces_c_headers + libxerces_c_resources,
+    include_directories: include_directories(['..']),
+    dependencies: libxerces_c_deps,
+)

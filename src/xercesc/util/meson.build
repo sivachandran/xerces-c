@@ -9,3 +9,10 @@ configure_file(
     input: 'XercesVersion.hpp.cmake.in',
     output: 'XercesVersion.hpp',
     configuration: config_data)
+
+if host_system == 'windows'
+    configure_file(
+        input: 'version.rc.cmake.in',
+        output: 'version.rc',
+        configuration: config_data)
+endif
