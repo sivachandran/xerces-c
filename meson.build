@@ -608,7 +608,7 @@ endif
 path_delims = '/'
 
 config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 0)
-if get_option('path-delimiter-backslash') or \
+if get_option('path-delimiter-backslash').enabled() or \
     (host_system == 'windows' and get_option('path-delimiter-backslash').auto())
     config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 1)
     path_delims = '\\'
@@ -687,62 +687,77 @@ if host_system == 'darwin'
     endif
 endif
 
+config_data.set('HAVE_ICONV_H', 0)
 if cxx.has_header('iconv.h')
     config_data.set('HAVE_ICONV_H', 1)
 endif
 
+config_data.set('HAVE_WCHAR_H', 0)
 if cxx.has_header('wchar.h')
     config_data.set('HAVE_WCHAR_H', 1)
 endif
 
+config_data.set('HAVE_STRING_H', 0)
 if cxx.has_header('string.h')
     config_data.set('HAVE_STRING_H', 1)
 endif
 
+config_data.set('HAVE_STDLIB_H', 0)
 if cxx.has_header('stdlib.h')
     config_data.set('HAVE_STDLIB_H', 1)
 endif
 
+config_data.set('HAVE_STDIO_H', 0)
 if cxx.has_header('stdio.h')
     config_data.set('HAVE_STDIO_H', 1)
 endif
 
+config_data.set('HAVE_CTYPE_H', 0)
 if cxx.has_header('ctype.h')
     config_data.set('HAVE_CTYPE_H', 1)
 endif
 
+config_data.set('HAVE_LOCALE_H', 0)
 if cxx.has_header('locale.h')
     config_data.set('HAVE_LOCALE_H', 1)
 endif
 
+config_data.set('HAVE_ERRNO_H', 0)
 if cxx.has_header('errno.h')
     config_data.set('HAVE_ERRNO_H', 1)
 endif
 
+config_data.set('HAVE_ENDIAN_H', 0)
 if cxx.has_header('endian.h')
     config_data.set('HAVE_ENDIAN_H', 1)
 endif
 
+config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
 if cxx.has_header('machine/endian.h')
     config_data.set('HAVE_MACHINE_ENDIAN_H', 1)
 endif
 
+config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 0)
 if cxx.has_header('arpa/nameser_compat.h')
     config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
 endif
 
+config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 0)
 if cxx.has_header('arpa/nameser_compat.h')
     config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
 endif
 
+config_data.set('HAVE_ICONV_OPEN', 0)
 if cxx.has_function('iconv_open')
     config_data.set('HAVE_ICONV_OPEN', 1)
 endif
 
+config_data.set('HAVE_ICONV_CLOSE', 0)
 if cxx.has_function('iconv_close')
     config_data.set('HAVE_ICONV_CLOSE', 1)
 endif
 
+config_data.set('HAVE_ICONV', 0)
 if cxx.has_function('iconv')
     config_data.set('HAVE_ICONV', 1)
 endif
@@ -817,23 +832,27 @@ endif
 ### Begin MsgLoaders ###
 msgloaders = []
 
-libicu = cxx.find_library('icu', required: false)
-if libicu.found()
+ico_dep = dependency('icu', required: false)
+if ico_dep.found()
     msgloaders += 'icu'
 endif
 
+config_data.set('HAVE_NLTYPES_H', 0)
 if cxx.has_header('nl_types.h')
     config_data.set('HAVE_NLTYPES_H', 1)
 endif
 
+config_data.set('HAVE_CATOPEN', 0)
 if cxx.has_function('catopen')
     config_data.set('HAVE_CATOPEN', 1)
 endif
 
+config_data.set('HAVE_CATCLOSE', 0)
 if cxx.has_function('catclose')
     config_data.set('HAVE_CATCLOSE', 1)
 endif
 
+config_data.set('HAVE_CATGETS', 0)
 if cxx.has_function('catgets')
     config_data.set('HAVE_CATGETS', 1)
 endif
@@ -1116,8 +1135,8 @@ endif
 
 ### Begin MFC ###
 config_data.set('XERCES_MFC_SUPPORT', 0)
-if get_option('mfc-debug') or \
-    (cxx.get_id() == 'msvc' and get_options('mfc-debug').auto())
+if get_option('mfc-debug').enabled() or \
+    (cxx.get_id() == 'msvc' and get_option('mfc-debug').auto())
     config_data.set('XERCES_MFC_SUPPORT', 1)
 endif
 ### End MFC

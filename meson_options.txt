@@ -3,8 +3,8 @@ option('threads', type: 'boolean', value: true, description: 'Enable threading')
 option('extra-warnings', type: 'boolean', value: false, description: 'Enable extrat compiler warnings')
 option('fatal-warnings', type: 'boolean', value: false, description: 'Compiler warnings are errors')
 
-option('path-delimiter-backslash', type: 'boolean', value: false, description: 'Accept backslash as a path delimiter')
+option('path-delimiter-backslash', type: 'feature', value: 'disabled', description: 'Accept backslash as a path delimiter')
 
-option('mfc-debug', type: 'boolean', value: false, description: 'MFC debug support')
+option('mfc-debug', type: 'feature', value: 'disabled', description: 'MFC debug support')
 
 option('sse2', type: 'boolean', value: true, description: 'Enable SSE2')
