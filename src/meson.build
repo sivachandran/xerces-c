@@ -1,118 +1,11 @@
 
 source_root = meson.current_source_dir()
 
-dom_headers = [
-    'xercesc/dom/DOM.hpp',
-    'xercesc/dom/DOMAttr.hpp',
-    'xercesc/dom/DOMCDATASection.hpp',
-    'xercesc/dom/DOMCharacterData.hpp',
-    'xercesc/dom/DOMComment.hpp',
-    'xercesc/dom/DOMConfiguration.hpp',
-    'xercesc/dom/DOMDocument.hpp',
-    'xercesc/dom/DOMDocumentFragment.hpp',
-    'xercesc/dom/DOMDocumentRange.hpp',
-    'xercesc/dom/DOMDocumentTraversal.hpp',
-    'xercesc/dom/DOMDocumentType.hpp',
-    'xercesc/dom/DOMElement.hpp',
-    'xercesc/dom/DOMEntity.hpp',
-    'xercesc/dom/DOMEntityReference.hpp',
-    'xercesc/dom/DOMError.hpp',
-    'xercesc/dom/DOMErrorHandler.hpp',
-    'xercesc/dom/DOMException.hpp',
-    'xercesc/dom/DOMImplementation.hpp',
-    'xercesc/dom/DOMImplementationList.hpp',
-    'xercesc/dom/DOMImplementationLS.hpp',
-    'xercesc/dom/DOMImplementationRegistry.hpp',
-    'xercesc/dom/DOMImplementationSource.hpp',
-    'xercesc/dom/DOMLocator.hpp',
-    'xercesc/dom/DOMLSException.hpp',
-    'xercesc/dom/DOMLSInput.hpp',
-    'xercesc/dom/DOMLSOutput.hpp',
-    'xercesc/dom/DOMLSParser.hpp',
-    'xercesc/dom/DOMLSParserFilter.hpp',
-    'xercesc/dom/DOMLSResourceResolver.hpp',
-    'xercesc/dom/DOMLSSerializer.hpp',
-    'xercesc/dom/DOMLSSerializerFilter.hpp',
-    'xercesc/dom/DOMMemoryManager.hpp',
-    'xercesc/dom/DOMNamedNodeMap.hpp',
-    'xercesc/dom/DOMNode.hpp',
-    'xercesc/dom/DOMNodeFilter.hpp',
-    'xercesc/dom/DOMNodeIterator.hpp',
-    'xercesc/dom/DOMNodeList.hpp',
-    'xercesc/dom/DOMNotation.hpp',
-    'xercesc/dom/DOMProcessingInstruction.hpp',
-    'xercesc/dom/DOMPSVITypeInfo.hpp',
-    'xercesc/dom/DOMRange.hpp',
-    'xercesc/dom/DOMRangeException.hpp',
-    'xercesc/dom/DOMStringList.hpp',
-    'xercesc/dom/DOMText.hpp',
-    'xercesc/dom/DOMTreeWalker.hpp',
-    'xercesc/dom/DOMTypeInfo.hpp',
-    'xercesc/dom/DOMUserDataHandler.hpp',
-    'xercesc/dom/DOMXPathEvaluator.hpp',
-    'xercesc/dom/DOMXPathException.hpp',
-    'xercesc/dom/DOMXPathExpression.hpp',
-    'xercesc/dom/DOMXPathNamespace.hpp',
-    'xercesc/dom/DOMXPathNSResolver.hpp',
-    'xercesc/dom/DOMXPathResult.hpp',
-    'xercesc/dom/StDOMNode.hpp',
-]
-
 dom_sources = [
     'xercesc/dom/DOMException.cpp',
     'xercesc/dom/DOMLSException.cpp',
     'xercesc/dom/DOMRangeException.cpp',
     'xercesc/dom/DOMXPathException.cpp',
-]
-
-domimpl_headers = [
-    'xercesc/dom/impl/DOMAttrImpl.hpp',
-    'xercesc/dom/impl/DOMAttrMapImpl.hpp',
-    'xercesc/dom/impl/DOMAttrNSImpl.hpp',
-    'xercesc/dom/impl/DOMCasts.hpp',
-    'xercesc/dom/impl/DOMCDATASectionImpl.hpp',
-    'xercesc/dom/impl/DOMCharacterDataImpl.hpp',
-    'xercesc/dom/impl/DOMChildNode.hpp',
-    'xercesc/dom/impl/DOMCommentImpl.hpp',
-    'xercesc/dom/impl/DOMConfigurationImpl.hpp',
-    'xercesc/dom/impl/DOMDeepNodeListImpl.hpp',
-    'xercesc/dom/impl/DOMDeepNodeListPool.hpp',
-    'xercesc/dom/impl/DOMDeepNodeListPool.c',
-    'xercesc/dom/impl/DOMDocumentFragmentImpl.hpp',
-    'xercesc/dom/impl/DOMDocumentImpl.hpp',
-    'xercesc/dom/impl/DOMDocumentTypeImpl.hpp',
-    'xercesc/dom/impl/DOMElementImpl.hpp',
-    'xercesc/dom/impl/DOMElementNSImpl.hpp',
-    'xercesc/dom/impl/DOMEntityImpl.hpp',
-    'xercesc/dom/impl/DOMEntityReferenceImpl.hpp',
-    'xercesc/dom/impl/DOMErrorImpl.hpp',
-    'xercesc/dom/impl/DOMImplementationImpl.hpp',
-    'xercesc/dom/impl/DOMImplementationListImpl.hpp',
-    'xercesc/dom/impl/DOMLocatorImpl.hpp',
-    'xercesc/dom/impl/DOMNamedNodeMapImpl.hpp',
-    'xercesc/dom/impl/DOMNodeBase.hpp',
-    'xercesc/dom/impl/DOMNodeIDMap.hpp',
-    'xercesc/dom/impl/DOMNodeImpl.hpp',
-    'xercesc/dom/impl/DOMNodeIteratorImpl.hpp',
-    'xercesc/dom/impl/DOMNodeListImpl.hpp',
-    'xercesc/dom/impl/DOMNodeVector.hpp',
-    'xercesc/dom/impl/DOMNormalizer.hpp',
-    'xercesc/dom/impl/DOMNotationImpl.hpp',
-    'xercesc/dom/impl/DOMParentNode.hpp',
-    'xercesc/dom/impl/DOMProcessingInstructionImpl.hpp',
-    'xercesc/dom/impl/DOMRangeImpl.hpp',
-    'xercesc/dom/impl/DOMStringListImpl.hpp',
-    'xercesc/dom/impl/DOMStringPool.hpp',
-    'xercesc/dom/impl/DOMTextImpl.hpp',
-    'xercesc/dom/impl/DOMTreeWalkerImpl.hpp',
-    'xercesc/dom/impl/DOMTypeInfoImpl.hpp',
-    'xercesc/dom/impl/DOMLSSerializerImpl.hpp',
-    'xercesc/dom/impl/DOMLSInputImpl.hpp',
-    'xercesc/dom/impl/DOMLSOutputImpl.hpp',
-    'xercesc/dom/impl/DOMXPathExpressionImpl.hpp',
-    'xercesc/dom/impl/DOMXPathNSResolverImpl.hpp',
-    'xercesc/dom/impl/DOMXPathResultImpl.hpp',
-    'xercesc/dom/impl/XSDElementNSImpl.hpp',
 ]
 
 domimpl_sources = [
@@ -160,73 +53,6 @@ domimpl_sources = [
     'xercesc/dom/impl/DOMXPathNSResolverImpl.cpp',
     'xercesc/dom/impl/DOMXPathResultImpl.cpp',
     'xercesc/dom/impl/XSDElementNSImpl.cpp',
-]
-
-framework_headers = [
-    'xercesc/framework/BinOutputStream.hpp',
-    'xercesc/framework/LocalFileFormatTarget.hpp',
-    'xercesc/framework/LocalFileInputSource.hpp',
-    'xercesc/framework/MemBufFormatTarget.hpp',
-    'xercesc/framework/MemBufInputSource.hpp',
-    'xercesc/framework/MemoryManager.hpp',
-    'xercesc/framework/psvi/PSVIAttribute.hpp',
-    'xercesc/framework/psvi/PSVIAttributeList.hpp',
-    'xercesc/framework/psvi/PSVIElement.hpp',
-    'xercesc/framework/psvi/PSVIHandler.hpp',
-    'xercesc/framework/psvi/PSVIItem.hpp',
-    'xercesc/framework/psvi/XSAnnotation.hpp',
-    'xercesc/framework/psvi/XSAttributeDeclaration.hpp',
-    'xercesc/framework/psvi/XSAttributeGroupDefinition.hpp',
-    'xercesc/framework/psvi/XSAttributeUse.hpp',
-    'xercesc/framework/psvi/XSComplexTypeDefinition.hpp',
-    'xercesc/framework/psvi/XSConstants.hpp',
-    'xercesc/framework/psvi/XSElementDeclaration.hpp',
-    'xercesc/framework/psvi/XSFacet.hpp',
-    'xercesc/framework/psvi/XSIDCDefinition.hpp',
-    'xercesc/framework/psvi/XSModel.hpp',
-    'xercesc/framework/psvi/XSModelGroup.hpp',
-    'xercesc/framework/psvi/XSModelGroupDefinition.hpp',
-    'xercesc/framework/psvi/XSMultiValueFacet.hpp',
-    'xercesc/framework/psvi/XSNamedMap.hpp',
-    'xercesc/framework/psvi/XSNamedMap.c',
-    'xercesc/framework/psvi/XSNamespaceItem.hpp',
-    'xercesc/framework/psvi/XSNotationDeclaration.hpp',
-    'xercesc/framework/psvi/XSObject.hpp',
-    'xercesc/framework/psvi/XSParticle.hpp',
-    'xercesc/framework/psvi/XSSimpleTypeDefinition.hpp',
-    'xercesc/framework/psvi/XSTypeDefinition.hpp',
-    'xercesc/framework/psvi/XSValue.hpp',
-    'xercesc/framework/psvi/XSWildcard.hpp',
-    'xercesc/framework/StdInInputSource.hpp',
-    'xercesc/framework/StdOutFormatTarget.hpp',
-    'xercesc/framework/URLInputSource.hpp',
-    'xercesc/framework/ValidationContext.hpp',
-    'xercesc/framework/Wrapper4DOMLSInput.hpp',
-    'xercesc/framework/Wrapper4InputSource.hpp',
-    'xercesc/framework/XMLAttDef.hpp',
-    'xercesc/framework/XMLAttDefList.hpp',
-    'xercesc/framework/XMLAttr.hpp',
-    'xercesc/framework/XMLBuffer.hpp',
-    'xercesc/framework/XMLBufferMgr.hpp',
-    'xercesc/framework/XMLContentModel.hpp',
-    'xercesc/framework/XMLDocumentHandler.hpp',
-    'xercesc/framework/XMLDTDDescription.hpp',
-    'xercesc/framework/XMLElementDecl.hpp',
-    'xercesc/framework/XMLEntityDecl.hpp',
-    'xercesc/framework/XMLEntityHandler.hpp',
-    'xercesc/framework/XMLErrorCodes.hpp',
-    'xercesc/framework/XMLErrorReporter.hpp',
-    'xercesc/framework/XMLFormatter.hpp',
-    'xercesc/framework/XMLGrammarDescription.hpp',
-    'xercesc/framework/XMLGrammarPool.hpp',
-    'xercesc/framework/XMLGrammarPoolImpl.hpp',
-    'xercesc/framework/XMLNotationDecl.hpp',
-    'xercesc/framework/XMLPScanToken.hpp',
-    'xercesc/framework/XMLRecognizer.hpp',
-    'xercesc/framework/XMLRefInfo.hpp',
-    'xercesc/framework/XMLSchemaDescription.hpp',
-    'xercesc/framework/XMLValidator.hpp',
-    'xercesc/framework/XMLValidityCodes.hpp',
 ]
 
 framework_sources = [
@@ -283,35 +109,6 @@ framework_sources = [
     'xercesc/framework/XMLValidator.cpp',
 ]
 
-internal_headers = [
-    'xercesc/internal/BinFileOutputStream.hpp',
-    'xercesc/internal/BinMemOutputStream.hpp',
-    'xercesc/internal/CharTypeTables.hpp',
-    'xercesc/internal/DGXMLScanner.hpp',
-    'xercesc/internal/ElemStack.hpp',
-    'xercesc/internal/EndOfEntityException.hpp',
-    'xercesc/internal/IANAEncodings.hpp',
-    'xercesc/internal/IGXMLScanner.hpp',
-    'xercesc/internal/MemoryManagerImpl.hpp',
-    'xercesc/internal/ReaderMgr.hpp',
-    'xercesc/internal/SGXMLScanner.hpp',
-    'xercesc/internal/ValidationContextImpl.hpp',
-    'xercesc/internal/VecAttributesImpl.hpp',
-    'xercesc/internal/VecAttrListImpl.hpp',
-    'xercesc/internal/WFXMLScanner.hpp',
-    'xercesc/internal/XMLInternalErrorHandler.hpp',
-    'xercesc/internal/XMLReader.hpp',
-    'xercesc/internal/XMLScanner.hpp',
-    'xercesc/internal/XMLScannerResolver.hpp',
-    'xercesc/internal/XProtoType.hpp',
-    'xercesc/internal/XSAXMLScanner.hpp',
-    'xercesc/internal/XSerializable.hpp',
-    'xercesc/internal/XSerializationException.hpp',
-    'xercesc/internal/XSerializeEngine.hpp',
-    'xercesc/internal/XSObjectFactory.hpp',
-    'xercesc/internal/XTemplateSerializer.hpp',
-]
-
 internal_sources = [
     'xercesc/internal/BinFileOutputStream.cpp',
     'xercesc/internal/BinMemOutputStream.cpp',
@@ -336,15 +133,6 @@ internal_sources = [
     'xercesc/internal/XTemplateSerializer.cpp',
 ]
 
-parsers_headers = [
-    'xercesc/parsers/AbstractDOMParser.hpp',
-    'xercesc/parsers/DOMLSParserImpl.hpp',
-    'xercesc/parsers/SAX2XMLFilterImpl.hpp',
-    'xercesc/parsers/SAX2XMLReaderImpl.hpp',
-    'xercesc/parsers/SAXParser.hpp',
-    'xercesc/parsers/XercesDOMParser.hpp',
-]
-
 parsers_sources = [
     'xercesc/parsers/AbstractDOMParser.cpp',
     'xercesc/parsers/DOMLSParserImpl.cpp',
@@ -354,20 +142,6 @@ parsers_sources = [
     'xercesc/parsers/XercesDOMParser.cpp',
 ]
 
-sax_headers = [
-    'xercesc/sax/AttributeList.hpp',
-    'xercesc/sax/DocumentHandler.hpp',
-    'xercesc/sax/DTDHandler.hpp',
-    'xercesc/sax/EntityResolver.hpp',
-    'xercesc/sax/ErrorHandler.hpp',
-    'xercesc/sax/HandlerBase.hpp',
-    'xercesc/sax/InputSource.hpp',
-    'xercesc/sax/Locator.hpp',
-    'xercesc/sax/Parser.hpp',
-    'xercesc/sax/SAXException.hpp',
-    'xercesc/sax/SAXParseException.hpp',
-]
-
 sax_sources = [
     'xercesc/sax/Dummy.cpp',
     'xercesc/sax/InputSource.cpp',
@@ -375,165 +149,8 @@ sax_sources = [
     'xercesc/sax/SAXParseException.cpp',
 ]
 
-sax2_headers = [
-    'xercesc/sax2/Attributes.hpp',
-    'xercesc/sax2/ContentHandler.hpp',
-    'xercesc/sax2/DeclHandler.hpp',
-    'xercesc/sax2/DefaultHandler.hpp',
-    'xercesc/sax2/LexicalHandler.hpp',
-    'xercesc/sax2/SAX2XMLFilter.hpp',
-    'xercesc/sax2/SAX2XMLReader.hpp',
-    'xercesc/sax2/XMLReaderFactory.hpp',
-]
-
 sax2_sources = [
     'xercesc/sax2/sax2Dummy.cpp',
-]
-
-util_headers = [
-    'xercesc/util/ArrayIndexOutOfBoundsException.hpp',
-    'xercesc/util/Base64.hpp',
-    'xercesc/util/BaseRefVectorOf.hpp',
-    'xercesc/util/BaseRefVectorOf.c',
-    'xercesc/util/BinFileInputStream.hpp',
-    'xercesc/util/BinInputStream.hpp',
-    'xercesc/util/BinMemInputStream.hpp',
-    'xercesc/util/BitOps.hpp',
-    'xercesc/util/BitSet.hpp',
-    'xercesc/util/CountedPointer.hpp',
-    'xercesc/util/CountedPointer.c',
-    'xercesc/util/DefaultPanicHandler.hpp',
-    'xercesc/util/EmptyStackException.hpp',
-    'xercesc/util/EncodingValidator.hpp',
-    'xercesc/util/FlagJanitor.hpp',
-    'xercesc/util/FlagJanitor.c',
-    'xercesc/util/Hashers.hpp',
-    'xercesc/util/Hash2KeysSetOf.hpp',
-    'xercesc/util/Hash2KeysSetOf.c',
-    'xercesc/util/HexBin.hpp',
-    'xercesc/util/IllegalArgumentException.hpp',
-    'xercesc/util/InvalidCastException.hpp',
-    'xercesc/util/IOException.hpp',
-    'xercesc/util/Janitor.hpp',
-    'xercesc/util/Janitor.c',
-    'xercesc/util/KeyRefPair.hpp',
-    'xercesc/util/KeyRefPair.c',
-    'xercesc/util/KeyValuePair.hpp',
-    'xercesc/util/KeyValuePair.c',
-    'xercesc/util/KVStringPair.hpp',
-    'xercesc/util/Mutexes.hpp',
-    'xercesc/util/LogicalPath.c',
-    'xercesc/util/NameIdPool.hpp',
-    'xercesc/util/NameIdPool.c',
-    'xercesc/util/NoSuchElementException.hpp',
-    'xercesc/util/NullPointerException.hpp',
-    'xercesc/util/NumberFormatException.hpp',
-    'xercesc/util/OutOfMemoryException.hpp',
-    'xercesc/util/PanicHandler.hpp',
-    'xercesc/util/ParseException.hpp',
-    'xercesc/util/PlatformUtils.hpp',
-    'xercesc/util/PSVIUni.hpp',
-    'xercesc/util/QName.hpp',
-    'xercesc/util/RefArrayOf.hpp',
-    'xercesc/util/RefArrayOf.c',
-    'xercesc/util/RefArrayVectorOf.hpp',
-    'xercesc/util/RefArrayVectorOf.c',
-    'xercesc/util/RefHash2KeysTableOf.hpp',
-    'xercesc/util/RefHash2KeysTableOf.c',
-    'xercesc/util/RefHash3KeysIdPool.hpp',
-    'xercesc/util/RefHash3KeysIdPool.c',
-    'xercesc/util/RefHashTableOf.hpp',
-    'xercesc/util/RefHashTableOf.c',
-    'xercesc/util/RefStackOf.hpp',
-    'xercesc/util/RefStackOf.c',
-    'xercesc/util/RefVectorOf.hpp',
-    'xercesc/util/RefVectorOf.c',
-    'xercesc/util/regx/ASCIIRangeFactory.hpp',
-    'xercesc/util/regx/BlockRangeFactory.hpp',
-    'xercesc/util/regx/BMPattern.hpp',
-    'xercesc/util/regx/CharToken.hpp',
-    'xercesc/util/regx/ClosureToken.hpp',
-    'xercesc/util/regx/ConcatToken.hpp',
-    'xercesc/util/regx/Match.hpp',
-    'xercesc/util/regx/Op.hpp',
-    'xercesc/util/regx/OpFactory.hpp',
-    'xercesc/util/regx/ParenToken.hpp',
-    'xercesc/util/regx/ParserForXMLSchema.hpp',
-    'xercesc/util/regx/RangeFactory.hpp',
-    'xercesc/util/regx/RangeToken.hpp',
-    'xercesc/util/regx/RangeTokenMap.hpp',
-    'xercesc/util/regx/RegularExpression.hpp',
-    'xercesc/util/regx/RegxDefs.hpp',
-    'xercesc/util/regx/RegxParser.hpp',
-    'xercesc/util/regx/RegxUtil.hpp',
-    'xercesc/util/regx/StringToken.hpp',
-    'xercesc/util/regx/Token.hpp',
-    'xercesc/util/regx/TokenFactory.hpp',
-    'xercesc/util/regx/TokenInc.hpp',
-    'xercesc/util/regx/UniCharTable.hpp',
-    'xercesc/util/regx/UnicodeRangeFactory.hpp',
-    'xercesc/util/regx/UnionToken.hpp',
-    'xercesc/util/regx/XMLRangeFactory.hpp',
-    'xercesc/util/regx/XMLUniCharacter.hpp',
-    'xercesc/util/RuntimeException.hpp',
-    'xercesc/util/SchemaDateTimeException.hpp',
-    'xercesc/util/SecurityManager.hpp',
-    'xercesc/util/StringPool.hpp',
-    'xercesc/util/SynchronizedStringPool.hpp',
-    'xercesc/util/TranscodingException.hpp',
-    'xercesc/util/TransENameMap.hpp',
-    'xercesc/util/TransENameMap.c',
-    'xercesc/util/TransService.hpp',
-    'xercesc/util/UnexpectedEOFException.hpp',
-    'xercesc/util/UnsupportedEncodingException.hpp',
-    'xercesc/util/UTFDataFormatException.hpp',
-    'xercesc/util/ValueArrayOf.hpp',
-    'xercesc/util/ValueArrayOf.c',
-    'xercesc/util/ValueHashTableOf.hpp',
-    'xercesc/util/ValueHashTableOf.c',
-    'xercesc/util/ValueStackOf.hpp',
-    'xercesc/util/ValueStackOf.c',
-    'xercesc/util/ValueVectorOf.hpp',
-    'xercesc/util/ValueVectorOf.c',
-    'xercesc/util/XercesDefs.hpp',
-    'xercesc/util/XMemory.hpp',
-    'xercesc/util/XML256TableTranscoder.hpp',
-    'xercesc/util/XML88591Transcoder.hpp',
-    'xercesc/util/XMLAbstractDoubleFloat.hpp',
-    'xercesc/util/XMLASCIITranscoder.hpp',
-    'xercesc/util/XMLBigDecimal.hpp',
-    'xercesc/util/XMLBigInteger.hpp',
-    'xercesc/util/XMLChar.hpp',
-    'xercesc/util/XMLChTranscoder.hpp',
-    'xercesc/util/XMLDateTime.hpp',
-    'xercesc/util/XMLDOMMsg.hpp',
-    'xercesc/util/XMLDouble.hpp',
-    'xercesc/util/XMLEBCDICTranscoder.hpp',
-    'xercesc/util/XMLEntityResolver.hpp',
-    'xercesc/util/XMLEnumerator.hpp',
-    'xercesc/util/XMLException.hpp',
-    'xercesc/util/XMLExceptMsgs.hpp',
-    'xercesc/util/XMLFileMgr.hpp',
-    'xercesc/util/XMLFloat.hpp',
-    'xercesc/util/XMLIBM1047Transcoder.hpp',
-    'xercesc/util/XMLIBM1140Transcoder.hpp',
-    'xercesc/util/XMLInitializer.hpp',
-    'xercesc/util/XMLInteger.hpp',
-    'xercesc/util/XMLMutexMgr.hpp',
-    'xercesc/util/XMLMsgLoader.hpp',
-    'xercesc/util/XMLNetAccessor.hpp',
-    'xercesc/util/XMLNumber.hpp',
-    'xercesc/util/XMLResourceIdentifier.hpp',
-    'xercesc/util/XMLString.hpp',
-    'xercesc/util/XMLStringTokenizer.hpp',
-    'xercesc/util/XMLUCS4Transcoder.hpp',
-    'xercesc/util/XMLUni.hpp',
-    'xercesc/util/XMLUniDefs.hpp',
-    'xercesc/util/XMLUri.hpp',
-    'xercesc/util/XMLURL.hpp',
-    'xercesc/util/XMLUTF16Transcoder.hpp',
-    'xercesc/util/XMLUTF8Transcoder.hpp',
-    'xercesc/util/XMLWin1252Transcoder.hpp',
 ]
 
 util_sources = [
@@ -608,106 +225,6 @@ util_sources = [
     'xercesc/util/XMLUTF16Transcoder.cpp',
     'xercesc/util/XMLUTF8Transcoder.cpp',
     'xercesc/util/XMLWin1252Transcoder.cpp',
-]
-
-validators_headers = [
-    'xercesc/validators/common/AllContentModel.hpp',
-    'xercesc/validators/common/CMAny.hpp',
-    'xercesc/validators/common/CMBinaryOp.hpp',
-    'xercesc/validators/common/CMLeaf.hpp',
-    'xercesc/validators/common/CMRepeatingLeaf.hpp',
-    'xercesc/validators/common/CMNode.hpp',
-    'xercesc/validators/common/CMStateSet.hpp',
-    'xercesc/validators/common/CMUnaryOp.hpp',
-    'xercesc/validators/common/ContentLeafNameTypeVector.hpp',
-    'xercesc/validators/common/ContentSpecNode.hpp',
-    'xercesc/validators/common/DFAContentModel.hpp',
-    'xercesc/validators/common/Grammar.hpp',
-    'xercesc/validators/common/GrammarResolver.hpp',
-    'xercesc/validators/common/MixedContentModel.hpp',
-    'xercesc/validators/common/SimpleContentModel.hpp',
-    'xercesc/validators/datatype/AbstractNumericFacetValidator.hpp',
-    'xercesc/validators/datatype/AbstractNumericValidator.hpp',
-    'xercesc/validators/datatype/AbstractStringValidator.hpp',
-    'xercesc/validators/datatype/AnySimpleTypeDatatypeValidator.hpp',
-    'xercesc/validators/datatype/AnyURIDatatypeValidator.hpp',
-    'xercesc/validators/datatype/Base64BinaryDatatypeValidator.hpp',
-    'xercesc/validators/datatype/BooleanDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DatatypeValidator.hpp',
-    'xercesc/validators/datatype/DatatypeValidatorFactory.hpp',
-    'xercesc/validators/datatype/DateDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DateTimeDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DateTimeValidator.hpp',
-    'xercesc/validators/datatype/DayDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DecimalDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DoubleDatatypeValidator.hpp',
-    'xercesc/validators/datatype/DurationDatatypeValidator.hpp',
-    'xercesc/validators/datatype/ENTITYDatatypeValidator.hpp',
-    'xercesc/validators/datatype/FloatDatatypeValidator.hpp',
-    'xercesc/validators/datatype/HexBinaryDatatypeValidator.hpp',
-    'xercesc/validators/datatype/IDDatatypeValidator.hpp',
-    'xercesc/validators/datatype/IDREFDatatypeValidator.hpp',
-    'xercesc/validators/datatype/InvalidDatatypeFacetException.hpp',
-    'xercesc/validators/datatype/InvalidDatatypeValueException.hpp',
-    'xercesc/validators/datatype/ListDatatypeValidator.hpp',
-    'xercesc/validators/datatype/MonthDatatypeValidator.hpp',
-    'xercesc/validators/datatype/MonthDayDatatypeValidator.hpp',
-    'xercesc/validators/datatype/NameDatatypeValidator.hpp',
-    'xercesc/validators/datatype/NCNameDatatypeValidator.hpp',
-    'xercesc/validators/datatype/NOTATIONDatatypeValidator.hpp',
-    'xercesc/validators/datatype/QNameDatatypeValidator.hpp',
-    'xercesc/validators/datatype/StringDatatypeValidator.hpp',
-    'xercesc/validators/datatype/TimeDatatypeValidator.hpp',
-    'xercesc/validators/datatype/UnionDatatypeValidator.hpp',
-    'xercesc/validators/datatype/XMLCanRepGroup.hpp',
-    'xercesc/validators/datatype/YearDatatypeValidator.hpp',
-    'xercesc/validators/datatype/YearMonthDatatypeValidator.hpp',
-    'xercesc/validators/DTD/DocTypeHandler.hpp',
-    'xercesc/validators/DTD/DTDAttDef.hpp',
-    'xercesc/validators/DTD/DTDAttDefList.hpp',
-    'xercesc/validators/DTD/DTDElementDecl.hpp',
-    'xercesc/validators/DTD/DTDEntityDecl.hpp',
-    'xercesc/validators/DTD/DTDGrammar.hpp',
-    'xercesc/validators/DTD/DTDScanner.hpp',
-    'xercesc/validators/DTD/DTDValidator.hpp',
-    'xercesc/validators/DTD/XMLDTDDescriptionImpl.hpp',
-    'xercesc/validators/schema/ComplexTypeInfo.hpp',
-    'xercesc/validators/schema/GeneralAttributeCheck.hpp',
-    'xercesc/validators/schema/identity/FieldActivator.hpp',
-    'xercesc/validators/schema/identity/FieldValueMap.hpp',
-    'xercesc/validators/schema/identity/IC_Field.hpp',
-    'xercesc/validators/schema/identity/IC_Key.hpp',
-    'xercesc/validators/schema/identity/IC_KeyRef.hpp',
-    'xercesc/validators/schema/identity/IC_Selector.hpp',
-    'xercesc/validators/schema/identity/IC_Unique.hpp',
-    'xercesc/validators/schema/identity/IdentityConstraint.hpp',
-    'xercesc/validators/schema/identity/IdentityConstraintHandler.hpp',
-    'xercesc/validators/schema/identity/ValueStore.hpp',
-    'xercesc/validators/schema/identity/ValueStoreCache.hpp',
-    'xercesc/validators/schema/identity/XercesXPath.hpp',
-    'xercesc/validators/schema/identity/XPathException.hpp',
-    'xercesc/validators/schema/identity/XPathMatcher.hpp',
-    'xercesc/validators/schema/identity/XPathMatcherStack.hpp',
-    'xercesc/validators/schema/identity/XPathSymbols.hpp',
-    'xercesc/validators/schema/NamespaceScope.hpp',
-    'xercesc/validators/schema/PSVIDefs.hpp',
-    'xercesc/validators/schema/SchemaAttDef.hpp',
-    'xercesc/validators/schema/SchemaAttDefList.hpp',
-    'xercesc/validators/schema/SchemaElementDecl.hpp',
-    'xercesc/validators/schema/SchemaGrammar.hpp',
-    'xercesc/validators/schema/SchemaInfo.hpp',
-    'xercesc/validators/schema/SchemaSymbols.hpp',
-    'xercesc/validators/schema/SchemaValidator.hpp',
-    'xercesc/validators/schema/SubstitutionGroupComparator.hpp',
-    'xercesc/validators/schema/TraverseSchema.hpp',
-    'xercesc/validators/schema/XercesAttGroupInfo.hpp',
-    'xercesc/validators/schema/XercesElementWildcard.hpp',
-    'xercesc/validators/schema/XercesGroupInfo.hpp',
-    'xercesc/validators/schema/XMLSchemaDescriptionImpl.hpp',
-    'xercesc/validators/schema/XSDDOMParser.hpp',
-    'xercesc/validators/schema/XSDErrorReporter.hpp',
-    'xercesc/validators/schema/XSDLocator.hpp',
-    'xercesc/validators/schema/XUtil.hpp',
 ]
 
 validators_sources = [
@@ -801,72 +318,35 @@ validators_sources = [
     'xercesc/validators/schema/XUtil.cpp',
 ]
 
-xinclude_headers = [
-    'xercesc/xinclude/XIncludeDOMDocumentProcessor.hpp',
-    'xercesc/xinclude/XIncludeLocation.hpp',
-    'xercesc/xinclude/XIncludeUtils.hpp',
-]
-
 xinclude_sources = [
     'xercesc/xinclude/XIncludeDOMDocumentProcessor.cpp',
     'xercesc/xinclude/XIncludeLocation.cpp',
     'xercesc/xinclude/XIncludeUtils.cpp',
 ]
 
-icu_headers = [
-    'xercesc/util/Transcoders/ICU/ICUTransService.hpp',
-]
-
 icu_sources = [
     'xercesc/util/Transcoders/ICU/ICUTransService.cpp',
-]
-
-gnuiconv_headers = [
-    'xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.hpp',
 ]
 
 gnuiconv_sources = [
     'xercesc/util/Transcoders/IconvGNU/IconvGNUTransService.cpp',
 ]
 
-iconv_headers = [
-    'xercesc/util/Transcoders/Iconv/IconvTransService.hpp',
-]
-
 iconv_sources = [
     'xercesc/util/Transcoders/Iconv/IconvTransService.cpp',
-]
-
-macosunicodeconverter_headers = [
-    'xercesc/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.hpp',
 ]
 
 macosunicodeconverter_sources = [
     'xercesc/util/Transcoders/MacOSUnicodeConverter/MacOSUnicodeConverter.cpp',
 ]
 
-wintrans_headers = [
-    'xercesc/util/Transcoders/Win32/Win32TransService.hpp',
-]
-
 wintrans_sources = [
     'xercesc/util/Transcoders/Win32/Win32TransService.cpp',
-]
-
-curl_headers = [
-    'xercesc/util/NetAccessors/Curl/CurlNetAccessor.hpp',
-    'xercesc/util/NetAccessors/Curl/CurlURLInputStream.hpp',
 ]
 
 curl_sources = [
     'xercesc/util/NetAccessors/Curl/CurlNetAccessor.cpp',
     'xercesc/util/NetAccessors/Curl/CurlURLInputStream.cpp',
-]
-
-sockets_headers = [
-    'xercesc/util/NetAccessors/Socket/SocketNetAccessor.hpp',
-    'xercesc/util/NetAccessors/Socket/UnixHTTPURLInputStream.hpp',
-    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
 ]
 
 sockets_sources = [
@@ -875,20 +355,9 @@ sockets_sources = [
     'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
 ]
 
-cfurl_headers = [
-    'xercesc/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.hpp',
-    'xercesc/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.hpp',
-]
-
 cfurl_sources = [
     'xercesc/util/NetAccessors/MacOSURLAccessCF/MacOSURLAccessCF.cpp',
     'xercesc/util/NetAccessors/MacOSURLAccessCF/URLAccessCFBinInputStream.cpp',
-]
-
-winsock_headers = [
-    'xercesc/util/NetAccessors/WinSock/WinSockNetAccessor.hpp',
-    'xercesc/util/NetAccessors/WinSock/BinHTTPURLInputStream.hpp',
-    'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.hpp',
 ]
 
 winsock_sources = [
@@ -897,17 +366,8 @@ winsock_sources = [
     'xercesc/util/NetAccessors/BinHTTPInputStreamCommon.cpp',
 ]
 
-msginmemory_headers = [
-    'xercesc/util/MsgLoaders/InMemory/InMemMsgLoader.hpp',
-    'xercesc/util/MsgLoaders/InMemory/XercesMessages_en_US.hpp',
-]
-
 msginmemory_sources = [
     'xercesc/util/MsgLoaders/InMemory/InMemMsgLoader.cpp',
-]
-
-msgicu_headers = [
-    'xercesc/util/MsgLoaders/ICU/ICUMsgLoader.hpp',
 ]
 
 msgicu_sources = [
@@ -919,57 +379,28 @@ msgicu_nodist_sources = [
   source_root+ '/root_res.c',
 ]
 
-msgiconv_headers = [
-    'xercesc/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.hpp',
-    'xercesc/util/MsgLoaders/MsgCatalog/XMLMsgCat_Ids.hpp',
-]
-
 msgiconv_sources = [
     'xercesc/util/MsgLoaders/MsgCatalog/MsgCatalogLoader.cpp',
-]
-
-posixfmgr_headers = [
-    'xercesc/util/FileManagers/PosixFileMgr.hpp',
 ]
 
 posixfmgr_sources = [
     'xercesc/util/FileManagers/PosixFileMgr.cpp',
 ]
 
-winfmgr_headers = [
-    'xercesc/util/FileManagers/WindowsFileMgr.hpp',
-]
-
 winfmgr_sources = [
     'xercesc/util/FileManagers/WindowsFileMgr.cpp',
-]
-
-nothreadmmgr_headers = [
-    'xercesc/util/MutexManagers/NoThreadMutexMgr.hpp',
 ]
 
 nothreadmmgr_sources = [
     'xercesc/util/MutexManagers/NoThreadMutexMgr.cpp',
 ]
 
-stdmmgr_headers = [
-    'xercesc/util/MutexManagers/StdMutexMgr.hpp',
-]
-
 stdmmgr_sources = [
     'xercesc/util/MutexManagers/StdMutexMgr.cpp',
 ]
 
-posixmmgr_headers = [
-    'xercesc/util/MutexManagers/PosixMutexMgr.hpp',
-]
-
 posixmmgr_sources = [
     'xercesc/util/MutexManagers/PosixMutexMgr.cpp',
-]
-
-winmmgr_headers = [
-    'xercesc/util/MutexManagers/WindowsMutexMgr.hpp',
 ]
 
 winmmgr_sources = [
@@ -989,19 +420,6 @@ libxerces_c_sources = [
     xinclude_sources,
 ]
 
-libxerces_c_headers = [
-  util_headers,
-  dom_headers,
-  domimpl_headers,
-  framework_headers,
-  internal_headers,
-  parsers_headers,
-  sax_headers,
-  sax2_headers,
-  validators_headers,
-  xinclude_headers,
-]
-
 # TODO: Add replacement functions
 
 libxerces_c_deps = []
@@ -1018,64 +436,53 @@ endif
 
 if netaccessors[0] == 'curl'
     libxerces_c_sources += curl_sources
-    libxerces_c_headers += curl_headers
     libxerces_c_deps += curl_dep
 endif
 
 if netaccessors[0] == 'socket'
     libxerces_c_sources += sockets_sources
-    libxerces_c_headers += sockets_headers
 endif
 
 if netaccessors[0] == 'cfurl'
     libxerces_c_sources += cfurl_sources
-    libxerces_c_headers += cfurl_headers
     libxerces_c_deps += core_services_library
 endif
 
 if netaccessors[0] == 'winsock'
     libxerces_c_sources += winsock_sources
-    libxerces_c_headers += winsock_headers
 endif
 
 # Transcoders, conditionally built based on selection
 if config_data.get('XERCES_USE_TRANSCODER_ICU') == 1
     libxerces_c_sources += icu_sources
-    libxerces_c_headers += icu_headers
     libxerces_c_deps += libicu_dep
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_GNUICONV') == 1
     libxerces_c_sources += gnuiconv_sources
-    libxerces_c_headers += gnuiconv_headers
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_ICONV') == 1
     libxerces_c_sources += iconv_sources
-    libxerces_c_headers += iconv_headers
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER') == 1
     libxerces_c_sources += macosunicodeconverter_sources
-    libxerces_c_headers += macosunicodeconverter_headers
     libxerces_c_deps += core_services_library
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_WINDOWS') == 1
     libxerces_c_sources += wintrans_sources
-    libxerces_c_headers += wintrans_headers
 endif
 
 # MsgLoaders, conditionally built based on selection
 if msgloaders[0] == 'inmemory'
     libxerces_c_sources += msginmemory_sources
-    libxerces_c_headers += msginmemory_headers
 endif
 
 if msgloaders[0] == 'icu'
     libxerces_c_sources += msgicu_sources
     libxerces_c_sources += msgicu_nodist_sources
-    libxerces_c_headers += msgicu_headers
     libxerces_c_deps += libicu_dep
 
     pkgname = 'xercesc_messages_' + config_data.get('INTERFACE_VERSION_U')
@@ -1104,7 +511,6 @@ endif
 
 if msgloaders[0] == 'iconv'
     libxerces_c_sources += msgiconv_sources
-    libxerces_c_headers += msgiconv_headers
 
     pkgname = 'XercesMessages'
 
@@ -1125,35 +531,29 @@ endif
 # Mutex Managers, conditionally built based on selection
 if config_data.get('XERCES_USE_MUTEXMGR_NOTHREAD') == 1
     libxerces_c_sources += nothreadmmgr_sources
-    libxerces_c_headers += nothreadmmgr_headers
 endif
 
 if config_data.get('XERCES_USE_MUTEXMGR_STD') == 1
     libxerces_c_sources += stdmmgr_sources
-    libxerces_c_headers += stdmmgr_sources
     libxerces_c_deps += threads_dep
 endif
 
 if config_data.get('XERCES_USE_MUTEXMGR_POSIX') == 1
     libxerces_c_sources += posixfmgr_sources
-    libxerces_c_headers += posixfmgr_headers
     libxerces_c_deps += threads_dep
 endif
 
 if config_data.get('XERCES_USE_MUTEXMGR_WINDOWS') == 1
     libxerces_c_sources += winmmgr_sources
-    libxerces_c_headers += winmmgr_headers
 endif
 
 # File Managers, conditionally built based on selection
 if config_data.get('XERCES_USE_FILEMGR_POSIX') == 1
     libxerces_c_sources += posixfmgr_sources
-    libxerces_c_headers += posixfmgr_headers
 endif
 
 if config_data.get('XERCES_USE_FILEMGR_WINDOWS') == 1
     libxerces_c_sources += winfmgr_sources
-    libxerces_c_headers += winfmgr_headers
 endif
 
 # Windows resource.  With some additional work to clean it up, it
@@ -1167,8 +567,6 @@ add_project_arguments(['-DHAVE_CONFIG_H=1', '-DXERCES_BUILDING_LIBRARY=1'], lang
 
 # Search the project binary dir for config.h
 # TODO: do we really need separate include_directories specification?
-
-#libxerces_c_headers_dep = declare_dependency(sources: libxerces_c_headers)
 
 library('xerces-c',
     sources: libxerces_c_sources + libxerces_c_resources,
