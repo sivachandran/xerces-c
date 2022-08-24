@@ -1,4 +1,4 @@
-project('xerces-c', ['c','cpp'],
+project('xerces-c', 'cpp',
         version: '3.2.3',
         license: 'Apache v2.0',
         default_options: [
