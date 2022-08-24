@@ -6,6 +6,8 @@ project('xerces-c', ['c','cpp'],
             'warning_level=1',
         ])
 
+add_project_arguments(['-x', 'c++'], language: 'c')
+
 project_name = meson.project_name()
 source_root = meson.current_source_dir()
 build_root = meson.current_build_dir()
@@ -239,177 +241,177 @@ config_data.set('XERCES_HAVE_SYS_TYPES_H', config_data.get('HAVE_SYS_TYPES_H'))
 ### End Xerces Includes
 
 ### Begin Xerces Functions ###
-config_data.get('HAVE_GETCWD', 0)
+config_data.set('HAVE_GETCWD', 0)
 if cxx.has_function('getcwd')
     config_data.set('HAVE_GETCWD', 1)
 endif
 
-config_data.get('HAVE_PATHCONF', 0)
+config_data.set('HAVE_PATHCONF', 0)
 if cxx.has_function('pathconf')
     config_data.set('HAVE_PATHCONF', 1)
 endif
 
-config_data.get('HAVE_REALPATH', 0)
+config_data.set('HAVE_REALPATH', 0)
 if cxx.has_function('realpath')
     config_data.set('HAVE_REALPATH', 1)
 endif
 
-config_data.get('HAVE_GETADDRINFO', 0)
+config_data.set('HAVE_GETADDRINFO', 0)
 if cxx.has_function('getaddrinfo')
     config_data.set('HAVE_GETADDRINFO', 1)
 endif
 
-config_data.get('HAVE_GETHOSTBYADDR', 0)
+config_data.set('HAVE_GETHOSTBYADDR', 0)
 if cxx.has_function('gethostbyaddr')
     config_data.set('HAVE_GETHOSTBYADDR', 1)
 endif
 
-config_data.get('HAVE_GETHOSTBYNAME', 0)
+config_data.set('HAVE_GETHOSTBYNAME', 0)
 if cxx.has_function('gethostbyname')
     config_data.set('HAVE_GETHOSTBYNAME', 1)
 endif
 
-config_data.get('HAVE_SOCKET', 0)
+config_data.set('HAVE_SOCKET', 0)
 if cxx.has_function('socket')
     config_data.set('HAVE_SOCKET', 1)
 endif
 
-config_data.get('HAVE_CLOCK_GETTIME', 0)
+config_data.set('HAVE_CLOCK_GETTIME', 0)
 if cxx.has_function('clock_gettime')
     config_data.set('HAVE_CLOCK_GETTIME', 1)
 endif
 
-config_data.get('HAVE_FTIME', 0)
+config_data.set('HAVE_FTIME', 0)
 if cxx.has_function('ftime')
     config_data.set('HAVE_FTIME', 1)
 endif
 
-config_data.get('HAVE_GETTIMEOFDAY', 0)
+config_data.set('HAVE_GETTIMEOFDAY', 0)
 if cxx.has_function('gettimeofday')
     config_data.set('HAVE_GETTIMEOFDAY', 1)
 endif
 
-config_data.get('HAVE_GMTIME_R', 0)
+config_data.set('HAVE_GMTIME_R', 0)
 if cxx.has_function('gmtime_r')
     config_data.set('HAVE_GMTIME_R', 1)
 endif
 
-config_data.get('HAVE_MEMMOVE', 0)
+config_data.set('HAVE_MEMMOVE', 0)
 if cxx.has_function('memmove')
     config_data.set('HAVE_MEMMOVE', 1)
 endif
 
-config_data.get('HAVE_MEMSET', 0)
+config_data.set('HAVE_MEMSET', 0)
 if cxx.has_function('memset')
     config_data.set('HAVE_MEMSET', 1)
 endif
 
-config_data.get('HAVE_NL_LANGINFO', 0)
+config_data.set('HAVE_NL_LANGINFO', 0)
 if cxx.has_function('nl_langinfo')
     config_data.set('HAVE_NL_LANGINFO', 1)
 endif
 
-config_data.get('HAVE_SETLOCALE', 0)
+config_data.set('HAVE_SETLOCALE', 0)
 if cxx.has_function('setlocale')
     config_data.set('HAVE_SETLOCALE', 1)
 endif
 
-config_data.get('HAVE_LOCALECONV', 0)
+config_data.set('HAVE_LOCALECONV', 0)
 if cxx.has_function('localeconv')
     config_data.set('HAVE_LOCALECONV', 1)
 endif
 
-config_data.get('HAVE_SNPRINTF', 0)
+config_data.set('HAVE_SNPRINTF', 0)
 if cxx.has_function('snprintf')
     config_data.set('HAVE_SNPRINTF', 1)
 endif
 
-config_data.get('HAVE_STRCASECMP', 0)
+config_data.set('HAVE_STRCASECMP', 0)
 if cxx.has_function('strcasecmp')
     config_data.set('HAVE_STRCASECMP', 1)
 endif
 
-config_data.get('HAVE_STRNCASECMP', 0)
+config_data.set('HAVE_STRNCASECMP', 0)
 if cxx.has_function('strncasecmp')
     config_data.set('HAVE_STRNCASECMP', 1)
 endif
 
-config_data.get('HAVE_STRICMP', 0)
+config_data.set('HAVE_STRICMP', 0)
 if cxx.has_function('stricmp')
     config_data.set('HAVE_STRICMP', 1)
 endif
 
-config_data.get('HAVE_STRNICMP', 0)
+config_data.set('HAVE_STRNICMP', 0)
 if cxx.has_function('strnicmp')
     config_data.set('HAVE_STRNICMP', 1)
 endif
 
-config_data.get('HAVE_STRCHR', 0)
+config_data.set('HAVE_STRCHR', 0)
 if cxx.has_function('strchr')
     config_data.set('HAVE_STRCHR', 1)
 endif
 
-config_data.get('HAVE_STRDUP', 0)
+config_data.set('HAVE_STRDUP', 0)
 if cxx.has_function('strdup')
     config_data.set('HAVE_STRDUP', 1)
 endif
 
-config_data.get('HAVE_STRRCHR', 0)
+config_data.set('HAVE_STRRCHR', 0)
 if cxx.has_function('strrchr')
     config_data.set('HAVE_STRRCHR', 1)
 endif
 
-config_data.get('HAVE_STRSTR', 0)
+config_data.set('HAVE_STRSTR', 0)
 if cxx.has_function('strstr')
     config_data.set('HAVE_STRSTR', 1)
 endif
 
-config_data.get('HAVE_STRTOL', 0)
+config_data.set('HAVE_STRTOL', 0)
 if cxx.has_function('strtol')
     config_data.set('HAVE_STRTOL', 1)
 endif
 
-config_data.get('HAVE_STRTOUL', 0)
+config_data.set('HAVE_STRTOUL', 0)
 if cxx.has_function('strtoul')
     config_data.set('HAVE_STRTOUL', 1)
 endif
 
-config_data.get('HAVE_TIMEGM', 0)
+config_data.set('HAVE_TIMEGM', 0)
 if cxx.has_function('timegm')
     config_data.set('HAVE_TIMEGM', 1)
 endif
 
-config_data.get('HAVE_TOWUPPER', 0)
+config_data.set('HAVE_TOWUPPER', 0)
 if cxx.has_function('towupper')
     config_data.set('HAVE_TOWUPPER', 1)
 endif
 
-config_data.get('HAVE_TOWLOWER', 0)
+config_data.set('HAVE_TOWLOWER', 0)
 if cxx.has_function('towlower')
     config_data.set('HAVE_TOWLOWER', 1)
 endif
 
-config_data.get('HAVE_MBLEN', 0)
+config_data.set('HAVE_MBLEN', 0)
 if cxx.has_function('mblen')
     config_data.set('HAVE_MBLEN', 1)
 endif
 
-config_data.get('HAVE_WCSUPR', 0)
+config_data.set('HAVE_WCSUPR', 0)
 if cxx.has_function('wcsupr')
     config_data.set('HAVE_WCSUPR', 1)
 endif
 
-config_data.get('HAVE_WCSLWR', 0)
+config_data.set('HAVE_WCSLWR', 0)
 if cxx.has_function('wcslwr')
     config_data.set('HAVE_WCSLWR', 1)
 endif
 
-config_data.get('HAVE_WCSNICMP', 0)
+config_data.set('HAVE_WCSNICMP', 0)
 if cxx.has_function('wcsnicmp')
     config_data.set('HAVE_WCSNICMP', 1)
 endif
 
-config_data.get('HAVE_WCSICMP', 0)
+config_data.set('HAVE_WCSICMP', 0)
 if cxx.has_function('wcsicmp')
     config_data.set('HAVE_WCSICMP', 1)
 endif
@@ -419,8 +421,8 @@ endif
 config_data.set('XERCES_PLATFORM_EXPORT', '')
 config_data.set('XERCES_PLATFORM_IMPORT', '')
 config_data.set('XERCES_TEMPLATE_EXTERN', 'extern')
-config_data.set('XERCES_DLL_EXPORT', 0)
-config_data.set('XERCES_STATIC_LIBRARY', 0)
+config_data.set('XERCES_DLL_EXPORT', false)
+config_data.set('XERCES_STATIC_LIBRARY', false)
 
 if get_option('default_library') == 'static'
     config_data.set('XERCES_STATIC_LIBRARY', 1)
@@ -443,7 +445,7 @@ if cxx.has_header('cstdint')
     config_data.set('HAVE_CSTDINT', 1)
 endif
 
-config_data.set('CSTDINT_FUNCTIONAL', 0)
+config_data.set('CSTDINT_FUNCTIONAL', false)
 code = '''
 include <cstdint>
 
@@ -467,8 +469,8 @@ if cxx.has_header('inttypes.h')
     config_data.set('HAVE_INTTYPES_H', 1)
 endif
 
-config_data.set('XERCES_HAVE_CSTDINT', 0)
-if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('CSTDINT_FUNCTIONAL') == 1
+config_data.set('XERCES_HAVE_CSTDINT', false)
+if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('CSTDINT_FUNCTIONAL')
     config_data.set('XERCES_HAVE_CSTDINT', 1)
 endif
 config_data.set('XERCES_HAVE_STDINT_H', config_data.get('HAVE_CSTDINT'))
@@ -531,11 +533,11 @@ config_data.set('SIZEOF_UNSIGNED_CHAR_P',    cxx.sizeof('unsigned char *'))
 
 # If this failed, set size to zero to match autoconf
 if config_data.get('SIZEOF___INT64') == -1
-    config_data.set('SIZEOF___INT64', 0)
+    config_data.set('SIZEOF___INT64', false)
 endif
 
 if config_data.get('SIZEOF_UNSIGNED__INT64') == -1
-    config_data.set('SIZEOF_UNSIGNED__INT64', 0)
+    config_data.set('SIZEOF_UNSIGNED__INT64', false)
 endif
 
 if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('HAVE_STDINT_H') == 1 and config_data.get('HAVE_INTTYPES_H') == 1
@@ -607,7 +609,7 @@ endif
 ### Begin Xerces Path Delimiters ###
 path_delims = '/'
 
-config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 0)
+config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', false)
 if get_option('path-delimiter-backslash').enabled() or \
     (host_system == 'windows' and get_option('path-delimiter-backslash').auto())
     config_data.set('XERCES_PATH_DELIMITER_BACKSLASH', 1)
@@ -616,7 +618,8 @@ endif
 ### End Xerces Path Delimiters ###
 
 ### Begin Xerces ICU ###
-# TODO: check anything else required for icu dependency resolution
+libicu_dep = dependency('icu-uc', required: false)
+
 ### End Xerces ICU ###
 
 ### Begin NetAccessor Selection ###
@@ -653,10 +656,10 @@ if netaccessors.length() == 0
     error('no netaccessor available')
 endif
 
-config_data.set('XERCES_USE_NETACCESSOR_CURL', 0)
-config_data.set('XERCES_USE_NETACCESSOR_SOCKET', 0)
-config_data.set('XERCES_USE_NETACCESSOR_CFURL', 0)
-config_data.set('XERCES_USE_NETACCESSOR_WINSOCK', 0)
+config_data.set('XERCES_USE_NETACCESSOR_CURL', false)
+config_data.set('XERCES_USE_NETACCESSOR_SOCKET', false)
+config_data.set('XERCES_USE_NETACCESSOR_CFURL', false)
+config_data.set('XERCES_USE_NETACCESSOR_WINSOCK', false)
 if netaccessors[0] == 'curl'
     config_data.set('XERCES_USE_NETACCESSOR_CURL', 1)
 elif netaccessors[0] == 'socket'
@@ -673,8 +676,7 @@ endif
 ### Begin Transcoder Selection ###
 transcoders = []
 
-icu = cxx.find_library('icu', required: false)
-if icu.found()
+if libicu_dep.found()
     transcoders += 'icu'
 endif
 
@@ -813,7 +815,6 @@ config_data.set('XERCES_USE_TRANSCODER_ICONV', 0)
 config_data.set('XERCES_USE_TRANSCODER_GNUICONV', 0)
 config_data.set('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER', 0)
 config_data.set('XERCES_USE_TRANSCODER_WINDOWS', 0)
-
 if transcoders[0] == 'icu'
     config_data.set('XERCES_USE_TRANSCODER_ICU', 1)
 elif transcoders[0] == 'iconv'
@@ -868,10 +869,9 @@ if msgloaders.length() == 0
     error('no msgloaders found')
 endif
 
-config_data.set('XERCES_USE_MSGLOADER_ICU', 0)
-config_data.set('XERCES_USE_MSGLOADER_ICONV', 0)
-config_data.set('XERCES_USE_MSGLOADER_INMEMORY', 0)
-
+config_data.set('XERCES_USE_MSGLOADER_ICU', false)
+config_data.set('XERCES_USE_MSGLOADER_ICONV', false)
+config_data.set('XERCES_USE_MSGLOADER_INMEMORY', false)
 if msgloaders[0] == 'icu'
     config_data.set('XERCES_USE_MSGLOADER_ICU', 1)
 elif msgloaders[0] == 'iconv'
@@ -911,7 +911,7 @@ namespace
   {
     std::lock_guard<std::mutex> lock1(m1);
     std::lock_guard<std::recursive_mutex> lock2(m2);
-    std::cout << \"In thread\" << std::endl;
+    std::cout << "In thread" << std::endl;
   }
 
 }
@@ -933,7 +933,7 @@ int main() {
             mutexmgrs += 'windows'
         else
             mutexmgrs += 'posix'
-            config_data.set('HAVE_PTHREAD', 1)
+            config_data.set('HAVE_PTHREAD', 0)
         endif
     endif
 endif
@@ -981,12 +981,12 @@ endif
 xmlch_types = []
 code = '''
 int main() {
-  const char16_t *unicode = u\"Test ünícodè → ©\";
+  const char16_t *unicode = u"Test ünícodè → ©";
   return 0;
 }
 '''
 if cxx.compiles(code, name: 'XMLCh check')
-    if not cxx.sizeof('char16_t') == 2
+    if cxx.sizeof('char16_t') != 2
         warning('char16_t is not a 16-bit type')
     elif host_system == 'windows' and not cxx.sizeof('wchar_t') == 2
         warning('wchar_t is not a 16-bit type, and size differs from char16_t')
@@ -999,7 +999,7 @@ if host_system == 'windows'
     code = '''
 #include <windows.h>
 
-wchar_t file[] = L\"dummy.file\";
+wchar_t file[] = L"dummy.file";
 
 int main() {
   DeleteFileW(file);
@@ -1018,8 +1018,8 @@ if xmlch_types.length() == 0
 endif
 
 config_data.set('XERCES_XMLCH_T', config_data.get('XERCES_U16BIT_INT'))
-config_data.set('XERCES_USE_CHAR16_T', 0)
-config_data.set('XERCES_INCLUDE_WCHAR_H', 0)
+config_data.set('XERCES_USE_CHAR16_T', false)
+config_data.set('XERCES_INCLUDE_WCHAR_H', false)
 
 if xmlch_types[0] == 'char16_t'
     config_data.set('XERCES_XMLCH_T', 'char16_t')
@@ -1046,7 +1046,7 @@ int main() {
   return 0;
 }
 '''
-config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', true)
+config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', 1)
 if cxx.compiles(code, name: 'matching delete operator check')
     config_data.set('XERCES_NO_MATCHING_DELETE_OPERATOR', false)
 endif
@@ -1063,7 +1063,7 @@ int main() {
   return f(b);
 }
 '''
-config_data.set('XERCES_NO_NATIVE_BOOL', true)
+config_data.set('XERCES_NO_NATIVE_BOOL', 1)
 if cxx.compiles(code, name: 'bool check')
     config_data.set('XERCES_NO_NATIVE_BOOL', false)
 endif
@@ -1072,7 +1072,7 @@ endif
 ### Begin Const ###
 code = '''
 int main() {
-  const char *s = \"Test\";
+  const char *s = "Test";
   return 0;
 }
 '''
@@ -1124,7 +1124,7 @@ endif
 config_data.set('HAVE_LSTRING', 0)
 code = '''
 int main() {
-  const wchar_t* s=L\"wide string\";
+  const wchar_t* s=L"wide string";
   return 0;
 }
 '''
@@ -1134,7 +1134,7 @@ endif
 ### End LString ###
 
 ### Begin MFC ###
-config_data.set('XERCES_MFC_SUPPORT', 0)
+config_data.set('XERCES_MFC_SUPPORT', false)
 if get_option('mfc-debug').enabled() or \
     (cxx.get_id() == 'msvc' and get_option('mfc-debug').auto())
     config_data.set('XERCES_MFC_SUPPORT', 1)
@@ -1143,7 +1143,7 @@ endif
 
 ### Begin Namespaces ###
 config_data.set('HAVE_NAMESPACES', 0)
-config_data.set('XERCES_HAS_CPP_NAMESPACE', 0)
+config_data.set('XERCES_HAS_CPP_NAMESPACE', false)
 code = '''
 namespace Outer {
   namespace Inner {
@@ -1164,7 +1164,7 @@ endif
 
 ### Begin StdLibs ###
 config_data.set('HAVE_NAMESPACES', 0)
-config_data.set('XERCES_NEW_IOSTREAMS', 0)
+config_data.set('XERCES_NEW_IOSTREAMS', false)
 code = '''
 #include <map>
 #include <iomanip>
@@ -1190,7 +1190,7 @@ endif
 
 ### Begin StdNamespace ###
 config_data.set('HAVE_STD_NAMESPACE', 0)
-config_data.set('XERCES_STD_NAMESPACE', 0)
+config_data.set('XERCES_STD_NAMESPACE', false)
 code = '''
 #include <iostream>
 std::istream& is = std::cin;
@@ -1223,7 +1223,7 @@ int main() {
     endif
 
     # intrin
-    config_data.set('XERCES_HAVE_INTRIN_H', 0)
+    config_data.set('XERCES_HAVE_INTRIN_H', false)
     code = '''
 #include <intrin.h>
 
@@ -1236,7 +1236,7 @@ int main() {
     endif
 
     # emmintrin
-    config_data.set('XERCES_HAVE_EMMINTRIN_H', 0)
+    config_data.set('XERCES_HAVE_EMMINTRIN_H', false)
     code = '''
 #include <emmintrin.h>
 
@@ -1262,7 +1262,7 @@ int main() {
     endif
 
     # cpuid intrinsic
-    config_data.set('XERCES_HAVE_CPUID_INTRINSIC', 0)
+    config_data.set('XERCES_HAVE_CPUID_INTRINSIC', false)
     code = '''
 #include <intrin.h>
 
@@ -1277,7 +1277,7 @@ int main() {
     endif
 
     # getcpuid
-    config_data.set('XERCES_HAVE_GETCPUID', 0)
+    config_data.set('XERCES_HAVE_GETCPUID', false)
     code = '''
 #include <cpuid.h>
 
@@ -1292,7 +1292,7 @@ int main() {
     endif
 
     # sse2 intrinsic
-    config_data.set('XERCES_HAVE_SSE2_INTRINSIC', 0)
+    config_data.set('XERCES_HAVE_SSE2_INTRINSIC', false)
     code = '''
 #include <emmintrin.h>
 
@@ -1335,7 +1335,7 @@ code = '''
 #include <wchar.h>
 int main(void) {
   mbstate_t st;
-  mbrlen( \"t\", 5, &st );
+  mbrlen( "t", 5, &st );
   return 0;
 }
 '''
@@ -1432,5 +1432,3 @@ summary = [
     '  XMLCh type:                ' + xmlch_types[0],
 ]
 message('\n'.join(summary))
-
-# TODO: message()

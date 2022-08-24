@@ -387,7 +387,7 @@ sax2_headers = [
 ]
 
 sax2_sources = [
-      'xercesc/sax2/sax2Dummy.cpp,',
+    'xercesc/sax2/sax2Dummy.cpp',
 ]
 
 util_headers = [
@@ -1005,8 +1005,6 @@ libxerces_c_headers = [
 # TODO: Add replacement functions
 
 libxerces_c_deps = []
-libxerces_c_sources = []
-libxerces_c_headers = []
 libxerces_c_resources = []
 
 # NetAccessors, conditionally built based on selection
@@ -1018,24 +1016,24 @@ if libnsl.found()
     libxerces_c_deps += libnsl
 endif
 
-if config_data.get('XERCES_USE_NETACCESSOR_CURL') == 1
+if netaccessors[0] == 'curl'
     libxerces_c_sources += curl_sources
     libxerces_c_headers += curl_headers
     libxerces_c_deps += curl_dep
 endif
 
-if config_data.get('XERCES_USE_NETACCESSOR_SOCKET') == 1
+if netaccessors[0] == 'socket'
     libxerces_c_sources += sockets_sources
     libxerces_c_headers += sockets_headers
 endif
 
-if config_data.get('XERCES_USE_NETACCESSOR_CFURL') == 1
+if netaccessors[0] == 'cfurl'
     libxerces_c_sources += cfurl_sources
     libxerces_c_headers += cfurl_headers
     libxerces_c_deps += core_services_library
 endif
 
-if config_data.get('XERCES_USE_NETACCESSOR_WINSOCK') == 1
+if netaccessors[0] == 'winsock'
     libxerces_c_sources += winsock_sources
     libxerces_c_headers += winsock_headers
 endif
@@ -1044,7 +1042,7 @@ endif
 if config_data.get('XERCES_USE_TRANSCODER_ICU') == 1
     libxerces_c_sources += icu_sources
     libxerces_c_headers += icu_headers
-    libxerces_c_deps += ['ICU::uc', 'ICU::data']
+    libxerces_c_deps += libicu_dep
 endif
 
 if config_data.get('XERCES_USE_TRANSCODER_GNUICONV') == 1
@@ -1069,16 +1067,16 @@ if config_data.get('XERCES_USE_TRANSCODER_WINDOWS') == 1
 endif
 
 # MsgLoaders, conditionally built based on selection
-if config_data.get('XERCES_USE_MSGLOADER_INMEMORY') == 1
+if msgloaders[0] == 'inmemory'
     libxerces_c_sources += msginmemory_sources
     libxerces_c_headers += msginmemory_headers
 endif
 
-if config_data.get('XERCES_USE_MSGLOADER_ICU') == 1
+if msgloaders[0] == 'icu'
     libxerces_c_sources += msgicu_sources
     libxerces_c_sources += msgicu_nodist_sources
     libxerces_c_headers += msgicu_headers
-    libxerces_c_deps += libicu
+    libxerces_c_deps += libicu_dep
 
     pkgname = 'xercesc_messages_' + config_data.get('INTERFACE_VERSION_U')
 
@@ -1104,7 +1102,7 @@ if config_data.get('XERCES_USE_MSGLOADER_ICU') == 1
     )
 endif
 
-if config_data.get('XERCES_USE_MSGLOADER_ICONV') == 1
+if msgloaders[0] == 'iconv'
     libxerces_c_sources += msgiconv_sources
     libxerces_c_headers += msgiconv_headers
 
@@ -1173,7 +1171,7 @@ add_project_arguments(['-DHAVE_CONFIG_H=1', '-DXERCES_BUILDING_LIBRARY=1'], lang
 #libxerces_c_headers_dep = declare_dependency(sources: libxerces_c_headers)
 
 library('xerces-c',
-    sources: libxerces_c_sources + libxerces_c_headers + libxerces_c_resources,
+    sources: libxerces_c_sources + libxerces_c_resources,
     include_directories: include_directories(['..']),
     dependencies: libxerces_c_deps,
 )
