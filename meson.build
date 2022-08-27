@@ -104,196 +104,210 @@ add_project_arguments(cxx.get_supported_arguments(compiler_args), language: ['c'
 ### End Xerces Warnings
 
 ### Begin Xerces Includes ###
-config_data.set('HAVE_ARPA_INET_H', 0)
+config_data.set('HAVE_ARPA_INET_H', false)
 if cxx.has_header('arpa/inet.h')
     config_data.set('HAVE_ARPA_INET_H', 1)
 endif
 
-config_data.set('HAVE_DLFCN_H', 0)
+config_data.set('HAVE_DLFCN_H', false)
 if cxx.has_header('dlfcn.h')
     config_data.set('HAVE_DLFCN_H', 1)
 endif
 
-config_data.set('HAVE_FCNTL_H', 0)
+config_data.set('HAVE_FCNTL_H', false)
 if cxx.has_header('fcntl.h')
     config_data.set('HAVE_FCNTL_H', 1)
 endif
 
-config_data.set('HAVE_FLOAT_H', 0)
+config_data.set('HAVE_FLOAT_H', false)
 if cxx.has_header('float.h')
     config_data.set('HAVE_FLOAT_H', 1)
 endif
 
-config_data.set('HAVE_LANGINFO_H', 0)
+config_data.set('HAVE_LANGINFO_H', false)
 if cxx.has_header('langinfo.h')
     config_data.set('HAVE_LANGINFO_H', 1)
 endif
 
-config_data.set('HAVE_LIMITS_H', 0)
+config_data.set('HAVE_LIMITS_H', false)
 if cxx.has_header('limits.h')
     config_data.set('HAVE_LIMITS_H', 1)
 endif
 
-config_data.set('HAVE_LOCALE_H', 0)
+config_data.set('HAVE_LOCALE_H', false)
+have_locale_h = false
 if cxx.has_header('locale.h')
     config_data.set('HAVE_LOCALE_H', 1)
+    have_locale_h = true
 endif
 
-config_data.set('HAVE_MEMORY_H', 0)
+config_data.set('HAVE_MEMORY_H', false)
 if cxx.has_header('memory.h')
     config_data.set('HAVE_MEMORY_H', 1)
 endif
 
-config_data.set('HAVE_NETDB_H', 0)
+config_data.set('HAVE_NETDB_H', false)
 if cxx.has_header('netdb.h')
     config_data.set('HAVE_NETDB_H', 1)
 endif
 
-config_data.set('HAVE_NETINET_IN_H', 0)
+config_data.set('HAVE_NETINET_IN_H', false)
 if cxx.has_header('netinet/in.h')
     config_data.set('HAVE_NETINET_IN_H', 1)
 endif
 
-config_data.set('HAVE_NL_TYPES_H', 0)
+config_data.set('HAVE_NL_TYPES_H', false)
 if cxx.has_header('nl_types.h')
     config_data.set('HAVE_NL_TYPES_H', 1)
 endif
 
-config_data.set('HAVE_STDBOOL_H', 0)
+config_data.set('HAVE_STDBOOL_H', false)
 if cxx.has_header('stdbool.h')
     config_data.set('HAVE_STDBOOL_H', 1)
 endif
 
-config_data.set('HAVE_STDDEF_H', 0)
+config_data.set('HAVE_STDDEF_H', false)
 if cxx.has_header('stddef.h')
     config_data.set('HAVE_STDDEF_H', 1)
 endif
 
-config_data.set('HAVE_STDLIB_H', 0)
+config_data.set('HAVE_STDLIB_H', false)
+have_stdlib_h = false
 if cxx.has_header('stdlib.h')
     config_data.set('HAVE_STDLIB_H', 1)
+    have_stdlib_h = true
 endif
 
-config_data.set('HAVE_STRING_H', 0)
+config_data.set('HAVE_STRING_H', false)
+have_string_h = false
 if cxx.has_header('string.h')
     config_data.set('HAVE_STRING_H', 1)
+    have_string_h = true
 endif
 
-config_data.set('HAVE_STRINGS_H', 0)
+config_data.set('HAVE_STRINGS_H', false)
 if cxx.has_header('strings.h')
     config_data.set('HAVE_STRINGS_H', 1)
 endif
 
-config_data.set('HAVE_SYS_PARAM_H', 0)
+config_data.set('HAVE_SYS_PARAM_H', false)
 if cxx.has_header('sys/param.h')
     config_data.set('HAVE_SYS_PARAM_H', 1)
 endif
 
-config_data.set('HAVE_SYS_SOCKET_H', 0)
+config_data.set('HAVE_SYS_SOCKET_H', false)
 if cxx.has_header('sys/socket.h')
     config_data.set('HAVE_SYS_SOCKET_H', 1)
 endif
 
-config_data.set('HAVE_SYS_STAT_H', 0)
+config_data.set('HAVE_SYS_STAT_H', false)
 if cxx.has_header('sys/stat.h')
     config_data.set('HAVE_SYS_STAT_H', 1)
 endif
 
-config_data.set('HAVE_SYS_TIME_H', 0)
+config_data.set('HAVE_SYS_TIME_H', false)
 if cxx.has_header('sys/time.h')
     config_data.set('HAVE_SYS_TIME_H', 1)
 endif
 
-config_data.set('HAVE_SYS_TIMEB_H', 0)
+config_data.set('HAVE_SYS_TIMEB_H', false)
 if cxx.has_header('sys/timeb.h')
     config_data.set('HAVE_SYS_TIMEB_H', 1)
 endif
 
-config_data.set('HAVE_SYS_TYPES_H', 0)
+config_data.set('HAVE_SYS_TYPES_H', false)
 if cxx.has_header('sys/types.h')
     config_data.set('HAVE_SYS_TYPES_H', 1)
 endif
 
-config_data.set('HAVE_UNISTD_H', 0)
+config_data.set('HAVE_UNISTD_H', false)
 if cxx.has_header('unistd.h')
     config_data.set('HAVE_UNISTD_H', 1)
 endif
 
-config_data.set('HAVE_WCHAR_H', 0)
+config_data.set('HAVE_WCHAR_H', false)
+have_wchar_h = false
 if cxx.has_header('wchar.h')
     config_data.set('HAVE_WCHAR_H', 1)
+    have_wchar_h = true
 endif
 
-config_data.set('HAVE_WCTYPE_H', 0)
+config_data.set('HAVE_WCTYPE_H', false)
 if cxx.has_header('wctype.h')
     config_data.set('HAVE_WCTYPE_H', 1)
 endif
 
-config_data.set('HAVE_ENDIAN_H', 0)
+config_data.set('HAVE_ENDIAN_H', false)
+have_endian_h = false
 if cxx.has_header('endian.h')
     config_data.set('HAVE_ENDIAN_H', 1)
+    have_endian_h = true
 endif
 
-config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
+config_data.set('HAVE_MACHINE_ENDIAN_H', false)
+have_machine_endian_h = false
 if cxx.has_header('machine/endian.h')
     config_data.set('HAVE_MACHINE_ENDIAN_H', 1)
+    have_machine_endian_h = true
 endif
 
-config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
+config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', false)
+have_arpa_nameser_compat_h = false
 if cxx.has_header('arpa/nameser_compat.h')
     config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
+    have_arpa_nameser_compat_h = true
 endif
 
 config_data.set('XERCES_HAVE_SYS_TYPES_H', config_data.get('HAVE_SYS_TYPES_H'))
 ### End Xerces Includes
 
 ### Begin Xerces Functions ###
-config_data.set('HAVE_GETCWD', 0)
+config_data.set('HAVE_GETCWD', false)
 if cxx.has_function('getcwd')
     config_data.set('HAVE_GETCWD', 1)
 endif
 
-config_data.set('HAVE_PATHCONF', 0)
+config_data.set('HAVE_PATHCONF', false)
 if cxx.has_function('pathconf')
     config_data.set('HAVE_PATHCONF', 1)
 endif
 
-config_data.set('HAVE_REALPATH', 0)
+config_data.set('HAVE_REALPATH', false)
 if cxx.has_function('realpath')
     config_data.set('HAVE_REALPATH', 1)
 endif
 
-config_data.set('HAVE_GETADDRINFO', 0)
+config_data.set('HAVE_GETADDRINFO', false)
 if cxx.has_function('getaddrinfo')
     config_data.set('HAVE_GETADDRINFO', 1)
 endif
 
-config_data.set('HAVE_GETHOSTBYADDR', 0)
+config_data.set('HAVE_GETHOSTBYADDR', false)
 if cxx.has_function('gethostbyaddr')
     config_data.set('HAVE_GETHOSTBYADDR', 1)
 endif
 
-config_data.set('HAVE_GETHOSTBYNAME', 0)
+config_data.set('HAVE_GETHOSTBYNAME', false)
 if cxx.has_function('gethostbyname')
     config_data.set('HAVE_GETHOSTBYNAME', 1)
 endif
 
-config_data.set('HAVE_SOCKET', 0)
+config_data.set('HAVE_SOCKET', false)
 if cxx.has_function('socket')
     config_data.set('HAVE_SOCKET', 1)
 endif
 
-config_data.set('HAVE_CLOCK_GETTIME', 0)
+config_data.set('HAVE_CLOCK_GETTIME', false)
 if cxx.has_function('clock_gettime')
     config_data.set('HAVE_CLOCK_GETTIME', 1)
 endif
 
-config_data.set('HAVE_FTIME', 0)
+config_data.set('HAVE_FTIME', false)
 if cxx.has_function('ftime')
     config_data.set('HAVE_FTIME', 1)
 endif
 
-config_data.set('HAVE_GETTIMEOFDAY', 0)
+config_data.set('HAVE_GETTIMEOFDAY', false)
 if cxx.has_function('gettimeofday')
     config_data.set('HAVE_GETTIMEOFDAY', 1)
 endif
@@ -303,82 +317,86 @@ if cxx.has_function('gmtime_r')
     config_data.set('HAVE_GMTIME_R', 1)
 endif
 
-config_data.set('HAVE_MEMMOVE', 0)
+config_data.set('HAVE_MEMMOVE', false)
 if cxx.has_function('memmove')
     config_data.set('HAVE_MEMMOVE', 1)
 endif
 
-config_data.set('HAVE_MEMSET', 0)
+config_data.set('HAVE_MEMSET', false)
 if cxx.has_function('memset')
     config_data.set('HAVE_MEMSET', 1)
 endif
 
-config_data.set('HAVE_NL_LANGINFO', 0)
+config_data.set('HAVE_NL_LANGINFO', false)
 if cxx.has_function('nl_langinfo')
     config_data.set('HAVE_NL_LANGINFO', 1)
 endif
 
-config_data.set('HAVE_SETLOCALE', 0)
+config_data.set('HAVE_SETLOCALE', false)
 if cxx.has_function('setlocale')
     config_data.set('HAVE_SETLOCALE', 1)
 endif
 
-config_data.set('HAVE_LOCALECONV', 0)
+config_data.set('HAVE_LOCALECONV', false)
 if cxx.has_function('localeconv')
     config_data.set('HAVE_LOCALECONV', 1)
 endif
 
-config_data.set('HAVE_SNPRINTF', 0)
+config_data.set('HAVE_SNPRINTF', false)
 if cxx.has_function('snprintf')
     config_data.set('HAVE_SNPRINTF', 1)
 endif
 
-config_data.set('HAVE_STRCASECMP', 0)
+config_data.set('HAVE_STRCASECMP', false)
 if cxx.has_function('strcasecmp')
     config_data.set('HAVE_STRCASECMP', 1)
 endif
 
-config_data.set('HAVE_STRNCASECMP', 0)
+config_data.set('HAVE_STRNCASECMP', false)
 if cxx.has_function('strncasecmp')
     config_data.set('HAVE_STRNCASECMP', 1)
 endif
 
-config_data.set('HAVE_STRICMP', 0)
+config_data.set('HAVE_STRICMP', false)
+have_stricmp = false
 if cxx.has_function('stricmp')
     config_data.set('HAVE_STRICMP', 1)
+    have_stricmp = true
 endif
 
-config_data.set('HAVE_STRNICMP', 0)
+config_data.set('HAVE_STRNICMP', false)
+have_strnicmp = false
 if cxx.has_function('strnicmp')
     config_data.set('HAVE_STRNICMP', 1)
+    have_strnicmp = true
 endif
 
-config_data.set('HAVE_STRCHR', 0)
+config_data.set('HAVE_STRCHR', false)
 if cxx.has_function('strchr')
     config_data.set('HAVE_STRCHR', 1)
 endif
 
-config_data.set('HAVE_STRDUP', 0)
+config_data.set('HAVE_STRDUP', false)
 if cxx.has_function('strdup')
     config_data.set('HAVE_STRDUP', 1)
 endif
 
-config_data.set('HAVE_STRRCHR', 0)
+config_data.set('HAVE_STRRCHR', false)
 if cxx.has_function('strrchr')
     config_data.set('HAVE_STRRCHR', 1)
 endif
 
-config_data.set('HAVE_STRSTR', 0)
+config_data.set('HAVE_STRSTR', false)
 if cxx.has_function('strstr')
     config_data.set('HAVE_STRSTR', 1)
 endif
 
-config_data.set('HAVE_STRTOL', 0)
+config_data.set('HAVE_STRTOL', false)
 if cxx.has_function('strtol')
     config_data.set('HAVE_STRTOL', 1)
 endif
 
-config_data.set('HAVE_STRTOUL', 0)
+config_data.set('HAVE_STRTOUL', false)
 if cxx.has_function('strtoul')
     config_data.set('HAVE_STRTOUL', 1)
 endif
@@ -388,37 +406,43 @@ if cxx.has_function('timegm')
     config_data.set('HAVE_TIMEGM', 1)
 endif
 
-config_data.set('HAVE_TOWUPPER', 0)
+config_data.set('HAVE_TOWUPPER', false)
+have_towupper = false
 if cxx.has_function('towupper')
     config_data.set('HAVE_TOWUPPER', 1)
+    have_towupper = true
 endif
 
-config_data.set('HAVE_TOWLOWER', 0)
+config_data.set('HAVE_TOWLOWER', false)
+have_towlower = false
 if cxx.has_function('towlower')
     config_data.set('HAVE_TOWLOWER', 1)
+    have_towlower = true
 endif
 
-config_data.set('HAVE_MBLEN', 0)
+config_data.set('HAVE_MBLEN', false)
+have_mblen = false
 if cxx.has_function('mblen')
     config_data.set('HAVE_MBLEN', 1)
+    have_mblen = true
 endif
 
-config_data.set('HAVE_WCSUPR', 0)
+config_data.set('HAVE_WCSUPR', false)
 if cxx.has_function('wcsupr')
     config_data.set('HAVE_WCSUPR', 1)
 endif
 
-config_data.set('HAVE_WCSLWR', 0)
+config_data.set('HAVE_WCSLWR', false)
 if cxx.has_function('wcslwr')
     config_data.set('HAVE_WCSLWR', 1)
 endif
 
-config_data.set('HAVE_WCSNICMP', 0)
+config_data.set('HAVE_WCSNICMP', false)
 if cxx.has_function('wcsnicmp')
     config_data.set('HAVE_WCSNICMP', 1)
 endif
 
-config_data.set('HAVE_WCSICMP', 0)
+config_data.set('HAVE_WCSICMP', false)
 if cxx.has_function('wcsicmp')
     config_data.set('HAVE_WCSICMP', 1)
 endif
@@ -447,12 +471,15 @@ endif
 
 ### Begin Xerces Int Types ###
 # Integer type checks.
-config_data.set('HAVE_CSTDINT', 0)
+config_data.set('HAVE_CSTDINT', false)
+have_cstdint = false
 if cxx.has_header('cstdint')
     config_data.set('HAVE_CSTDINT', 1)
+    have_cstdint = true
 endif
 
 config_data.set('CSTDINT_FUNCTIONAL', false)
+cstdint_functional = false
 code = '''
 include <cstdint>
 
@@ -464,20 +491,25 @@ int main() {
 '''
 if cxx.compiles(code, name: 'cstdint check')
     config_data.set('CSTDINT_FUNCTIONAL', 1)
+    cstdint_functional = true
 endif
 
-config_data.set('HAVE_STDINT_H', 0)
+config_data.set('HAVE_STDINT_H', false)
+have_stdint_h = false
 if cxx.has_header('stdint.h')
     config_data.set('HAVE_STDINT_H', 1)
+    have_stdint_h = true
 endif
 
-config_data.set('HAVE_INTTYPES_H', 0)
+config_data.set('HAVE_INTTYPES_H', false)
+have_inttypes_h = false
 if cxx.has_header('inttypes.h')
     config_data.set('HAVE_INTTYPES_H', 1)
+    have_inttypes_h = true
 endif
 
 config_data.set('XERCES_HAVE_CSTDINT', false)
-if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('CSTDINT_FUNCTIONAL')
+if have_cstdint and cstdint_functional
     config_data.set('XERCES_HAVE_CSTDINT', 1)
 endif
 config_data.set('XERCES_HAVE_STDINT_H', config_data.get('HAVE_CSTDINT'))
@@ -489,40 +521,32 @@ config_data.set('SIZEOF_SIZE_T',  cxx.sizeof('size_t',  prefix: '#include <stdde
 config_data.set('SIZEOF_SSIZE_T', cxx.sizeof('ssize_t', prefix: '#include <stddef.h>'))
 config_data.set('SIZEOF_WCHAR_T', cxx.sizeof('wchar_t', prefix: '#include <stddef.h>'))
 
-config_data.set('HAVE_OFF_T', 0)
+config_data.set('HAVE_OFF_T', false)
 if config_data.get('SIZEOF_OFF_T') != -1
     config_data.set('HAVE_OFF_T', 1)
 endif
 
-config_data.set('HAVE_SIZE_T', 0)
+config_data.set('HAVE_SIZE_T', false)
+config_data.set('XERCES_SIZE_T', 'unsigned long')
+config_data.set('XERCES_SIZE_MAX', 'ULONG_MAX')
 if config_data.get('SIZEOF_SIZE_T') != -1
     config_data.set('HAVE_SIZE_T', 1)
-endif
-
-config_data.set('HAVE_SSIZE_T', 0)
-if config_data.get('SIZEOF_SSIZE_T') != -1
-    config_data.set('HAVE_SSIZE_T', 1)
-endif
-
-config_data.set('HAVE_WCHAR_T', 0)
-if config_data.get('SIZEOF_WCHAR_T') != -1
-    config_data.set('HAVE_WCHAR_T', 1)
-endif
-
-if config_data.get('HAVE_SIZE_T') == 1
     config_data.set('XERCES_SIZE_T', 'size_t')
     config_data.set('XERCES_SIZE_MAX', 'SIZE_MAX')
-else
-    config_data.set('XERCES_SIZE_T', 'unsigned long')
-    config_data.set('XERCES_SIZE_MAX', 'ULONG_MAX')
 endif
 
-if config_data.get('HAVE_SSIZE_T') == 1
+config_data.set('HAVE_SSIZE_T', false)
+config_data.set('XERCES_SSIZE_T', 'long')
+config_data.set('XERCES_SSIZE_MAX', 'LONG_MAX')
+if config_data.get('SIZEOF_SSIZE_T') != -1
+    config_data.set('HAVE_SSIZE_T', 1)
     config_data.set('XERCES_SSIZE_T', 'ssize_t')
     config_data.set('XERCES_SSIZE_MAX', 'SSIZE_MAX')
-else
-    config_data.set('XERCES_SSIZE_T', 'long')
-    config_data.set('XERCES_SSIZE_MAX', 'SSIZE_MAX')
+endif
+
+config_data.set('HAVE_WCHAR_T', false)
+if config_data.get('SIZEOF_WCHAR_T') != -1
+    config_data.set('HAVE_WCHAR_T', 1)
 endif
 
 # Check type sizes
@@ -547,7 +571,7 @@ if config_data.get('SIZEOF_UNSIGNED__INT64') == -1
     config_data.set('SIZEOF_UNSIGNED__INT64', false)
 endif
 
-if config_data.get('HAVE_CSTDINT') == 1 and config_data.get('HAVE_STDINT_H') == 1 and config_data.get('HAVE_INTTYPES_H') == 1
+if have_cstdint and have_stdint_h and have_inttypes_h
     config_data.set('XERCES_S16BIT_INT', 'int16_t')
     config_data.set('XERCES_U16BIT_INT', 'uint16_t')
     config_data.set('XERCES_S32BIT_INT', 'int32_t')
@@ -696,95 +720,83 @@ if host_system == 'darwin'
     endif
 endif
 
-config_data.set('HAVE_ICONV_H', 0)
+config_data.set('HAVE_ICONV_H', false)
+have_iconv_h = false
 if cxx.has_header('iconv.h')
     config_data.set('HAVE_ICONV_H', 1)
+    have_iconv_h = true
 endif
 
-config_data.set('HAVE_WCHAR_H', 0)
-if cxx.has_header('wchar.h')
-    config_data.set('HAVE_WCHAR_H', 1)
-endif
+# HAVE_WCHAR_H already defined in Includes section
 
-config_data.set('HAVE_STRING_H', 0)
-if cxx.has_header('string.h')
-    config_data.set('HAVE_STRING_H', 1)
-endif
+# HAVE_STRING_H already defined in Includes section
 
-config_data.set('HAVE_STDLIB_H', 0)
-if cxx.has_header('stdlib.h')
-    config_data.set('HAVE_STDLIB_H', 1)
-endif
+# HAVE_STDLIB_H already defined in Includes section
 
-config_data.set('HAVE_STDIO_H', 0)
+config_data.set('HAVE_STDIO_H', false)
+have_stdio_h = false
 if cxx.has_header('stdio.h')
     config_data.set('HAVE_STDIO_H', 1)
+    have_stdio_h = true
 endif
 
-config_data.set('HAVE_CTYPE_H', 0)
+config_data.set('HAVE_CTYPE_H', false)
+have_ctype_h = false
 if cxx.has_header('ctype.h')
     config_data.set('HAVE_CTYPE_H', 1)
+    have_ctype_h = true
 endif
 
-config_data.set('HAVE_LOCALE_H', 0)
-if cxx.has_header('locale.h')
-    config_data.set('HAVE_LOCALE_H', 1)
-endif
+# HAVE_LOCALE_H already defined in Includes section
 
-config_data.set('HAVE_ERRNO_H', 0)
+config_data.set('HAVE_ERRNO_H', false)
+have_errno_h = false
 if cxx.has_header('errno.h')
     config_data.set('HAVE_ERRNO_H', 1)
+    have_errno_h = true
 endif
 
-config_data.set('HAVE_ENDIAN_H', 0)
-if cxx.has_header('endian.h')
-    config_data.set('HAVE_ENDIAN_H', 1)
-endif
+# HAVE_ENDIAN_H already defined in Includes section
 
-config_data.set('HAVE_MACHINE_ENDIAN_H', 0)
-if cxx.has_header('machine/endian.h')
-    config_data.set('HAVE_MACHINE_ENDIAN_H', 1)
-endif
+# HAVE_MACHINE_ENDIAN_H already defined in Includes section
 
-config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 0)
-if cxx.has_header('arpa/nameser_compat.h')
-    config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
-endif
+# HAVE_ARPA_NAMESER_COMPAT_H already defined in Includes section
 
-config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 0)
-if cxx.has_header('arpa/nameser_compat.h')
-    config_data.set('HAVE_ARPA_NAMESER_COMPAT_H', 1)
-endif
-
-config_data.set('HAVE_ICONV_OPEN', 0)
+config_data.set('HAVE_ICONV_OPEN', false)
+have_iconv_open = false
 if cxx.has_function('iconv_open')
     config_data.set('HAVE_ICONV_OPEN', 1)
+    have_iconv_open = true
 endif
 
-config_data.set('HAVE_ICONV_CLOSE', 0)
+config_data.set('HAVE_ICONV_CLOSE', false)
+have_iconv_close = false
 if cxx.has_function('iconv_close')
     config_data.set('HAVE_ICONV_CLOSE', 1)
+    have_iconv_close = true
 endif
 
-config_data.set('HAVE_ICONV', 0)
+config_data.set('HAVE_ICONV', false)
+have_iconv = false
 if cxx.has_function('iconv')
     config_data.set('HAVE_ICONV', 1)
+    have_iconv = true
 endif
 
-if config_data.get('HAVE_ICONV_H') == 1 and \
-    config_data.get('HAVE_WCHAR_H') == 1 and \
-    config_data.get('HAVE_STRING_H') == 1 and \
-    config_data.get('HAVE_STDLIB_H') == 1 and \
-    config_data.get('HAVE_STDIO_H') == 1 and \
-    config_data.get('HAVE_CTYPE_H') == 1 and \
-    config_data.get('HAVE_LOCALE_H') == 1 and \
-    config_data.get('HAVE_ERRNO_H') == 1
-    if config_data.get('HAVE_ENDIAN_H') == 1 or \
-        config_data.get('HAVE_MACHINE_ENDIAN_H') == 1 or \
-        config_data.get('HAVE_ARPA_NAMESER_COMPAT_H') == 1
-        if config_data.get('HAVE_ICONV_OPEN') == 1 and \
-            config_data.get('HAVE_ICONV_CLOSE') == 1 and \
-            config_data.get('HAVE_ICONV') == 1
+if have_iconv_h and \
+    have_wchar_h and \
+    have_string_h and \
+    have_stdlib_h and \
+    have_stdio_h and \
+    have_ctype_h and \
+    have_locale_h and \
+    have_errno_h
+    if have_endian_h or \
+        have_machine_endian_h or \
+        have_arpa_nameser_compat_h
+        if have_iconv_open and \
+            have_iconv_close and \
+            have_iconv
             transcoders += 'gnuiconv'
         endif
     endif
@@ -794,22 +806,26 @@ if host_system == 'windows'
     transcoders += 'windows'
 endif
 
-if cxx.has_function('mblen')
-    config_data.set('HAVE_MBLEN', 1)
-endif
+# HAVE_MBLEN already defined in Inclusions sections
 
+config_data.set('HAVE_WCSTOMBS', false)
+have_wcstombs = false
 if cxx.has_function('wcstombs')
     config_data.set('HAVE_WCSTOMBS', 1)
+    have_wcstombs = true
 endif
 
+config_data.set('HAVE_MBSTOWCS', false)
+have_mbstowcs = false
 if cxx.has_function('mbstowcs')
     config_data.set('HAVE_MBSTOWCS', 1)
+    have_mbstowcs = true
 endif
 
-if config_data.get('HAVE_WCHAR_H') == 1 and \
-    config_data.get('HAVE_MBLEN') == 1 and \
-    config_data.get('HAVE_WCSTOMBS') == 1 and \
-    config_data.get('HAVE_MBSTOWCS') == 1
+if have_wchar_h and \
+    have_mblen and \
+    have_wcstombs and \
+    have_mbstowcs
     transcoders += 'iconv'
 endif
 
@@ -845,30 +861,38 @@ if ico_dep.found()
     msgloaders += 'icu'
 endif
 
-config_data.set('HAVE_NLTYPES_H', 0)
+config_data.set('HAVE_NLTYPES_H', false)
+have_nltypes = false
 if cxx.has_header('nl_types.h')
     config_data.set('HAVE_NLTYPES_H', 1)
+    have_nltypes = true
 endif
 
-config_data.set('HAVE_CATOPEN', 0)
+config_data.set('HAVE_CATOPEN', false)
+have_catopen = false
 if cxx.has_function('catopen')
     config_data.set('HAVE_CATOPEN', 1)
+    have_catopen = true
 endif
 
-config_data.set('HAVE_CATCLOSE', 0)
+config_data.set('HAVE_CATCLOSE', false)
+have_catclose = false
 if cxx.has_function('catclose')
     config_data.set('HAVE_CATCLOSE', 1)
+    have_catclose = true
 endif
 
-config_data.set('HAVE_CATGETS', 0)
+config_data.set('HAVE_CATGETS', false)
+have_catgets = false
 if cxx.has_function('catgets')
     config_data.set('HAVE_CATGETS', 1)
+    have_catgets = true
 endif
 
-if config_data.get('HAVE_NLTYPES_H') == 1 and \
-    config_data.get('HAVE_CATOPEN') == 1 and \
-    config_data.get('HAVE_CATCLOSE') == 1 and \
-    config_data.get('HAVE_CATGETS') == 1
+if have_nltypes and \
+    have_catopen and \
+    have_catclose and \
+    have_catgets
     msgloaders += 'iconv'
 endif
 
@@ -940,7 +964,7 @@ int main() {
             mutexmgrs += 'windows'
         else
             mutexmgrs += 'posix'
-            config_data.set('HAVE_PTHREAD', 0)
+            config_data.set('HAVE_PTHREAD', false)
         endif
     endif
 endif
@@ -1083,7 +1107,7 @@ int main() {
   return 0;
 }
 '''
-config_data.set('HAVE_CONST', 0)
+config_data.set('HAVE_CONST', false)
 if cxx.compiles(code, name: 'const check')
     config_data.set('HAVE_CONST', 1)
 endif
@@ -1091,8 +1115,8 @@ endif
 
 ### Begin Inline ###
 config_data.set('inline_keyword', '')
-config_data.set('NEED_INLINE', 0)
-config_data.set('HAVE_INLINE', 0)
+config_data.set('NEED_INLINE', false)
+config_data.set('HAVE_INLINE', false)
 
 inline_keywords = ['inline', '___inline__', '__inline']
 code = '''
@@ -1115,7 +1139,7 @@ endforeach
 ### End Inline ###
 
 ### Begin Volatile ###
-config_data.set('HAVE_VOLATILE', 0)
+config_data.set('HAVE_VOLATILE', false)
 code = '''
 int main() {
   volatile int i = 1;
@@ -1128,7 +1152,7 @@ endif
 ### End Volatile ###
 
 ### Begin LString ###
-config_data.set('HAVE_LSTRING', 0)
+config_data.set('HAVE_LSTRING', false)
 code = '''
 int main() {
   const wchar_t* s=L"wide string";
@@ -1149,7 +1173,8 @@ endif
 ### End MFC
 
 ### Begin Namespaces ###
-config_data.set('HAVE_NAMESPACES', 0)
+config_data.set('HAVE_NAMESPACES', false)
+have_namespaces = false
 config_data.set('XERCES_HAS_CPP_NAMESPACE', false)
 code = '''
 namespace Outer {
@@ -1165,12 +1190,12 @@ int main() {
 '''
 if cxx.compiles(code, name: 'Namespaces check')
     config_data.set('HAVE_NAMESPACES', 1)
+    have_namespaces = true
     config_data.set('XERCES_HAS_CPP_NAMESPACE', 1)
 endif
 ### End Namespaces ###
 
 ### Begin StdLibs ###
-config_data.set('HAVE_NAMESPACES', 0)
 config_data.set('XERCES_NEW_IOSTREAMS', false)
 code = '''
 #include <map>
@@ -1185,18 +1210,17 @@ int main() {
 }
 '''
 stdlibs_args = []
-if config_data.get('HAVE_NAMESPACES') == 1
+if have_namespaces
     stdlibs_args += ['-DHAVE_NAMESPACES']
 endif
 
 if cxx.compiles(code, name: 'StdLibs check', args: stdlibs_args)
-    config_data.set('HAVE_NAMESPACES', 1)
     config_data.set('XERCES_NEW_IOSTREAMS', 1)
 endif
 ### End StdLibs ###
 
 ### Begin StdNamespace ###
-config_data.set('HAVE_STD_NAMESPACE', 0)
+config_data.set('HAVE_STD_NAMESPACE', false)
 config_data.set('XERCES_STD_NAMESPACE', false)
 code = '''
 #include <iostream>
@@ -1256,7 +1280,7 @@ int main() {
     endif
 
     # cpuid
-    config_data.set('HAVE_CPUID_H', 0)
+    config_data.set('HAVE_CPUID_H', false)
     code = '''
 #include <cpuid.h>
 
@@ -1323,7 +1347,7 @@ endif
 ### End SSE2 ###
 
 ### Begin Path Max ###
-config_data.set('HAVE_PATH_MAX', 0)
+config_data.set('HAVE_PATH_MAX', false)
 code = '''
 #include <limits.h>
 int main(void) {
@@ -1337,7 +1361,7 @@ endif
 ### End Path Max ###
 
 ### Begin WChar ###
-config_data.set('HAVE_MBRLEN', 0)
+config_data.set('HAVE_MBRLEN', false)
 code = '''
 #include <wchar.h>
 int main(void) {
@@ -1350,7 +1374,7 @@ if cxx.compiles(code, name: 'MBRLEN check')
     config_data.set('HAVE_MBRLEN', 1)
 endif
 
-config_data.set('HAVE_WCSRTOMBS', 0)
+config_data.set('HAVE_WCSRTOMBS', false)
 code = '''
 #include <wchar.h>
 int main(void) {
@@ -1365,7 +1389,7 @@ if cxx.compiles(code, name: 'WCSRTOMBS check')
     config_data.set('HAVE_WCSRTOMBS', 1)
 endif
 
-config_data.set('HAVE_MBSRTOWCS', 0)
+config_data.set('HAVE_MBSRTOWCS', false)
 code = '''
 #include <wchar.h>
 int main(void) {
@@ -1382,7 +1406,7 @@ endif
 ### End WChar ###
 
 ### Begin Path Max ###
-config_data.set('ICONV_USES_CONST_POINTER', 0)
+config_data.set('ICONV_USES_CONST_POINTER', false)
 code = '''
 #include <iconv.h>
 

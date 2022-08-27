@@ -425,16 +425,16 @@ libxerces_c_resources = []
 
 # Add replacement functions
 xerces_replacement_funcs = []
-if config_data.get('HAVE_STRICMP') == 0
+if not have_stricmp
     xerces_replacement_funcs += 'stricmp.c'
 endif
-if config_data.get('HAVE_STRNICMP') == 0
+if not have_strnicmp
     xerces_replacement_funcs += 'strnicmp.c'
 endif
-if config_data.get('HAVE_TOWLOWER') == 0
+if not have_towlower
     xerces_replacement_funcs += 'towlower.c'
 endif
-if config_data.get('HAVE_TOWUPPER') == 0
+if not have_towupper
     xerces_replacement_funcs += 'towupper.c'
 endif
 libxerces_c_sources += xerces_replacement_funcs
