@@ -467,25 +467,25 @@ if netaccessors[0] == 'winsock'
 endif
 
 # Transcoders, conditionally built based on selection
-if config_data.get('XERCES_USE_TRANSCODER_ICU') == 1
+if transcoders[0] == 'icu'
     libxerces_c_sources += icu_sources
     libxerces_c_deps += libicu_dep
 endif
 
-if config_data.get('XERCES_USE_TRANSCODER_GNUICONV') == 1
+if transcoders[0] == 'gnuiconv'
     libxerces_c_sources += gnuiconv_sources
 endif
 
-if config_data.get('XERCES_USE_TRANSCODER_ICONV') == 1
+if transcoders[0] == 'iconv'
     libxerces_c_sources += iconv_sources
 endif
 
-if config_data.get('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER') == 1
+if transcoders[0] == 'macosunicodeconverter'
     libxerces_c_sources += macosunicodeconverter_sources
     libxerces_c_deps += core_services_library
 endif
 
-if config_data.get('XERCES_USE_TRANSCODER_WINDOWS') == 1
+if transcoders[0] == 'windows'
     libxerces_c_sources += wintrans_sources
 endif
 
@@ -543,37 +543,42 @@ if msgloaders[0] == 'iconv'
 endif
 
 # Mutex Managers, conditionally built based on selection
-if config_data.get('XERCES_USE_MUTEXMGR_NOTHREAD') == 1
+if mutexmgrs[0] == 'nothreads'
     libxerces_c_sources += nothreadmmgr_sources
 endif
 
-if config_data.get('XERCES_USE_MUTEXMGR_STD') == 1
+if mutexmgrs[0] == 'standard'
     libxerces_c_sources += stdmmgr_sources
     libxerces_c_deps += threads_dep
 endif
 
-if config_data.get('XERCES_USE_MUTEXMGR_POSIX') == 1
+if mutexmgrs[0] == 'posix'
     libxerces_c_sources += posixfmgr_sources
     libxerces_c_deps += threads_dep
 endif
 
-if config_data.get('XERCES_USE_MUTEXMGR_WINDOWS') == 1
+if mutexmgrs[0] == 'windows'
     libxerces_c_sources += winmmgr_sources
 endif
 
 # File Managers, conditionally built based on selection
-if config_data.get('XERCES_USE_FILEMGR_POSIX') == 1
+if filemgr == 'POSIX'
     libxerces_c_sources += posixfmgr_sources
 endif
 
-if config_data.get('XERCES_USE_FILEMGR_WINDOWS') == 1
+if filemgr == 'windows'
     libxerces_c_sources += winfmgr_sources
 endif
 
 # Windows resource.  With some additional work to clean it up, it
 # might be possible to use with Cygwin and MinGW.
 if host_system == 'windows'
-    libxerces_c_resources += source_root + '/xercesc/util/version.rc'
+    windows = import('windows')
+    version_rc = windows.compile_resources(
+        build_root + '/src/xercesc/util/version.rc',
+        args: ['/dXERCES_DLL_NAME="xerces-c\\0"'],
+        depend_files: source_root + '/xercesc/util/version.rc.cmake.in')
+    libxerces_c_resources += version_rc
 endif
 
 # Definitions required for building

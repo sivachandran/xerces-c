@@ -48,6 +48,12 @@ config_data.set('PACKAGE_STRING', project_name + ' ' + xercesc_version)
 config_data.set('PACKAGE_BUGREPORT', 'c-dev@xerces.apache.org')
 config_data.set('PACKAGE_URL', '"https://xerces.apache.org/xerces-c/"')
 
+# for Windows version.rc.cmake.in
+config_data.set('xerces-c_VERSION', xercesc_version)
+config_data.set('xerces-c_VERSION_MAJOR', xercesc_version_major)
+config_data.set('xerces-c_VERSION_MINOR', xercesc_version_minor)
+config_data.set('xerces-c_VERSION_PATCH', xercesc_version_revision)
+
 ### Begin Xerces Warnings ###
 compiler_args = []
 if cxx.get_id() == 'gcc' or cxx.get_id() == 'clang'
@@ -84,6 +90,7 @@ if cxx.get_id() == 'gcc' or cxx.get_id() == 'clang'
         compiler_args += ['-Werror']
     endif
 elif cxx.get_id() == 'msvc'
+    compiler_args += ['-DWIN32=1']
     if get_option('extra-warnings')
         compiler_args += ['/W4']
     endif
@@ -291,7 +298,7 @@ if cxx.has_function('gettimeofday')
     config_data.set('HAVE_GETTIMEOFDAY', 1)
 endif
 
-config_data.set('HAVE_GMTIME_R', 0)
+config_data.set('HAVE_GMTIME_R', false)
 if cxx.has_function('gmtime_r')
     config_data.set('HAVE_GMTIME_R', 1)
 endif
@@ -376,7 +383,7 @@ if cxx.has_function('strtoul')
     config_data.set('HAVE_STRTOUL', 1)
 endif
 
-config_data.set('HAVE_TIMEGM', 0)
+config_data.set('HAVE_TIMEGM', false)
 if cxx.has_function('timegm')
     config_data.set('HAVE_TIMEGM', 1)
 endif
@@ -810,11 +817,11 @@ if transcoders.length() == 0
     error('no transcoders found')
 endif
 
-config_data.set('XERCES_USE_TRANSCODER_ICU', 0)
-config_data.set('XERCES_USE_TRANSCODER_ICONV', 0)
-config_data.set('XERCES_USE_TRANSCODER_GNUICONV', 0)
-config_data.set('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER', 0)
-config_data.set('XERCES_USE_TRANSCODER_WINDOWS', 0)
+config_data.set('XERCES_USE_TRANSCODER_ICU', false)
+config_data.set('XERCES_USE_TRANSCODER_ICONV', false)
+config_data.set('XERCES_USE_TRANSCODER_GNUICONV', false)
+config_data.set('XERCES_USE_TRANSCODER_MACOSUNICODECONVERTER', false)
+config_data.set('XERCES_USE_TRANSCODER_WINDOWS', false)
 if transcoders[0] == 'icu'
     config_data.set('XERCES_USE_TRANSCODER_ICU', 1)
 elif transcoders[0] == 'iconv'
@@ -831,7 +838,7 @@ endif
 ### End Transcoder Selection ###
 
 ### Begin MsgLoaders ###
-msgloaders = []
+msgloaders = ['inmemory']
 
 ico_dep = dependency('icu', required: false)
 if ico_dep.found()
@@ -944,10 +951,10 @@ if mutexmgrs.length() == 0
     error('no mutexmgr found')
 endif
 
-config_data.set('XERCES_USE_MUTEXMGR_STD', 0)
-config_data.set('XERCES_USE_MUTEXMGR_POSIX', 0)
-config_data.set('XERCES_USE_MUTEXMGR_WINDOWS', 0)
-config_data.set('XERCES_USE_MUTEXMGR_NOTHREAD', 0)
+config_data.set('XERCES_USE_MUTEXMGR_STD', false)
+config_data.set('XERCES_USE_MUTEXMGR_POSIX', false)
+config_data.set('XERCES_USE_MUTEXMGR_WINDOWS', false)
+config_data.set('XERCES_USE_MUTEXMGR_NOTHREAD', false)
 if mutexmgrs[0] == 'standard'
     config_data.set('XERCES_USE_MUTEXMGR_STD', 1)
 elif mutexmgrs[0] == 'posix'
@@ -962,8 +969,8 @@ endif
 ### End MutexMgr Selection ###
 
 ### Begin FileMgr Selection ###
-config_data.set('XERCES_USE_FILEMGR_POSIX', 0)
-config_data.set('XERCES_USE_FILEMGR_WINDOWS', 0)
+config_data.set('XERCES_USE_FILEMGR_POSIX', false)
+config_data.set('XERCES_USE_FILEMGR_WINDOWS', false)
 
 filemgr = ''
 if host_system == 'windows'
@@ -988,7 +995,7 @@ int main() {
 if cxx.compiles(code, name: 'XMLCh check')
     if cxx.sizeof('char16_t') != 2
         warning('char16_t is not a 16-bit type')
-    elif host_system == 'windows' and not cxx.sizeof('wchar_t') == 2
+    elif host_system == 'windows' and cxx.sizeof('wchar_t') != 2
         warning('wchar_t is not a 16-bit type, and size differs from char16_t')
     else
         xmlch_types += ['char16_t']
@@ -1407,8 +1414,8 @@ configure_file(
     output: 'config.h',
     configuration: config_data)
 
-subdir('src')
 subdir('src/xercesc/util')
+subdir('src')
 
 summary = [
     '',
