@@ -586,10 +586,16 @@ add_project_arguments(['-DHAVE_CONFIG_H=1', '-DXERCES_BUILDING_LIBRARY=1'], lang
 
 # Search the project binary dir for config.h
 
-library('xerces-c',
+libxercesc_lib = library('xerces-c',
     sources: libxerces_c_sources + libxerces_c_resources,
-    include_directories: include_directories(['..']),
+    include_directories: include_directories('..'),
     dependencies: libxerces_c_deps,
+)
+
+libxercesc_dep = declare_dependency(
+    include_directories: include_directories('.'),
+    dependencies: libxerces_c_deps,
+    link_with: libxercesc_lib,
 )
 
 # TODO: Add windows resource file specific properties
