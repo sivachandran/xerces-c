@@ -586,8 +586,7 @@ add_project_arguments(['-DHAVE_CONFIG_H=1', '-DXERCES_BUILDING_LIBRARY=1'], lang
 
 # Search the project binary dir for config.h
 
-libxercesc_lib = library('xerces-c',
-    sources: libxerces_c_sources + libxerces_c_resources,
+libxercesc_lib = library('xerces-c', libxerces_c_sources + libxerces_c_resources,
     include_directories: include_directories('..'),
     dependencies: libxerces_c_deps,
 )
