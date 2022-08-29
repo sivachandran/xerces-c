@@ -54,6 +54,14 @@ config_data.set('xerces-c_VERSION_MAJOR', xercesc_version_major)
 config_data.set('xerces-c_VERSION_MINOR', xercesc_version_minor)
 config_data.set('xerces-c_VERSION_PATCH', xercesc_version_revision)
 
+config_data.set('HAVE_CORESERVICES_CORESERVICES_H', false)
+have_coreservices_coreservices_h = false
+if cxx.has_header('CoreServices/CoreServices.h')
+    config_data.set('HAVE_CORESERVICES_CORESERVICES_H', 1)
+    have_coreservices_coreservices_h = true
+endif
+core_services_dep = dependency('appleframeworks', modules: ['CoreServices'])
+
 ### Begin Xerces Warnings ###
 compiler_args = []
 if cxx.get_id() == 'gcc' or cxx.get_id() == 'clang'
@@ -675,11 +683,8 @@ else
         netaccessors += 'socket'
     endif
 
-    if cxx.has_header('CoreServices/CoreServices.h')
-        core_services_library = cxx.find_library('CoreServices')
-        if core_services_library.found()
-            netaccessors += 'cfurl'
-        endif
+    if have_coreservices_coreservices_h and core_services_dep.found()
+        netaccessors += 'cfurl'
     endif
 endif
 
@@ -712,11 +717,8 @@ if libicu_dep.found()
 endif
 
 if host_system == 'darwin'
-    if cxx.has_header('CoreServices/CoreServices.h')
-        core_services_library = cxx.find_library('CoreServices')
-        if core_services_library.found()
-            transcoders += 'macosunicodeconverter'
-        endif
+    if have_coreservices_coreservices_h and core_services_dep.found()
+        transcoders += 'macosunicodeconverter'
     endif
 endif
 
@@ -993,18 +995,12 @@ endif
 ### End MutexMgr Selection ###
 
 ### Begin FileMgr Selection ###
-config_data.set('XERCES_USE_FILEMGR_POSIX', false)
+config_data.set('XERCES_USE_FILEMGR_POSIX', 1)
 config_data.set('XERCES_USE_FILEMGR_WINDOWS', false)
-
-filemgr = ''
+filemgr = 'POSIX'
 if host_system == 'windows'
     config_data.set('XERCES_USE_FILEMGR_WINDOWS', 1)
     filemgr = 'windows'
-elif host_system == 'linux'
-    config_data.set('XERCES_USE_FILEMGR_POSIX', 1)
-    filemgr = 'POSIX'
-else
-    error('invalid file manager ' + host_system)
 endif
 ### End FileMgr Selection ###
 

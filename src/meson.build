@@ -482,7 +482,7 @@ endif
 
 if transcoders[0] == 'macosunicodeconverter'
     libxerces_c_sources += macosunicodeconverter_sources
-    libxerces_c_deps += core_services_library
+    libxerces_c_deps += core_services_dep
 endif
 
 if transcoders[0] == 'windows'
