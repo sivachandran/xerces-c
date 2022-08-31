@@ -60,7 +60,8 @@ if cxx.has_header('CoreServices/CoreServices.h')
     config_data.set('HAVE_CORESERVICES_CORESERVICES_H', 1)
     have_coreservices_coreservices_h = true
 endif
-core_services_dep = dependency('appleframeworks', modules: ['CoreServices'])
+
+core_services_dep = dependency('appleframeworks', modules: ['CoreServices'], required: false)
 
 ### Begin Xerces Warnings ###
 compiler_args = []
