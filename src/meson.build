@@ -597,5 +597,7 @@ libxercesc_dep = declare_dependency(
     link_with: libxercesc_lib,
 )
 
+meson.override_dependency('xerces-c', libxercesc_dep)
+
 # TODO: Add windows resource file specific properties
 # TODO: Set libtool specific versions
