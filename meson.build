@@ -1000,6 +1000,7 @@ config_data.set('XERCES_USE_FILEMGR_POSIX', 1)
 config_data.set('XERCES_USE_FILEMGR_WINDOWS', false)
 filemgr = 'POSIX'
 if host_system == 'windows'
+    config_data.set('XERCES_USE_FILEMGR_POSIX', false)
     config_data.set('XERCES_USE_FILEMGR_WINDOWS', 1)
     filemgr = 'windows'
 endif
