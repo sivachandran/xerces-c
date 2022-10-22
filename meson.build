@@ -46,7 +46,7 @@ config_data.set('PACKAGE_TARNAME', project_name)
 config_data.set('PACKAGE_VERSION', xercesc_version)
 config_data.set('PACKAGE_STRING', project_name + ' ' + xercesc_version)
 config_data.set('PACKAGE_BUGREPORT', 'c-dev@xerces.apache.org')
-config_data.set('PACKAGE_URL', '"https://xerces.apache.org/xerces-c/"')
+config_data.set('PACKAGE_URL', 'https://xerces.apache.org/xerces-c/')
 
 # for Windows version.rc.cmake.in
 config_data.set('xerces-c_VERSION', xercesc_version)
